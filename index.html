@@ -19,41 +19,44 @@
     <main id="Questions">
       <div class="container">
         <div class="row">
-          <div class="form-group">
-            <label for="strong">Do ye like yer drinks strong?</label>
-            <select name="strong" class="strong">
-              <option value="yes">Aye!</option>
-              <option value="no">Nay</option>
-            </select>
-          </div><!--form-group-->
-          <div class="form-group">
-            <label for="salty">Do ye like it with a salty tang?</label>
-            <select name="salty" class="salty">
-              <option value="yes">Aye!</option>
-              <option value="no">Nay</option>
-            </select>
-          </div><!--form-group-->
-          <div class="form-group">
-            <label for="bitter">Are ye a scallywag who likes yer drinks bitter?</label>
-            <select name="bitter" class="bitter">
-              <option>Aye!</option>
-              <option>Nay</option>
-            </select>
-          </div><!--form-group-->
-          <div class="form-group">
-            <label for="sweet">Would ye like a bit of sweetness with yer poision?</label>
-            <select name="sweet" class="sweet">
-              <option>Aye!</option>
-              <option>Nay</option>
-            </select>
-          </div><!--form-group-->
-          <div class="form-group">
-            <label for="fruit">Would ye like a fruity finish on yer drink, mate?</label>
-            <select name="fruit" class="fruit">
-              <option>Aye!</option>
-              <option>Nay</option>
-            </select>
-          </div><!--form-group-->
+          <form id="orderOptions">
+            <div class="form-group">
+              <label for="strong">Do ye like yer drinks strong?</label>
+              <select name="strong" class="strong">
+                <option value="yes">Aye!</option>
+                <option value="no">Nay</option>
+              </select>
+            </div><!--form-group-->
+            <div class="form-group">
+              <label for="salty">Do ye like it with a salty tang?</label>
+              <select name="salty" class="salty">
+                <option value="yes">Aye!</option>
+                <option value="no">Nay</option>
+              </select>
+            </div><!--form-group-->
+            <div class="form-group">
+              <label for="bitter">Are ye a scallywag who likes yer drinks bitter?</label>
+              <select name="bitter" class="bitter">
+                <option value="yes">Aye!</option>
+                <option value="no">Nay</option>
+              </select>
+            </div><!--form-group-->
+            <div class="form-group">
+              <label for="sweet">Would ye like a bit of sweetness with yer poision?</label>
+              <select name="sweet" class="sweet">
+                <option value="yes">Aye!</option>
+                <option value="no">Nay</option>
+              </select>
+            </div><!--form-group-->
+            <div class="form-group">
+              <label for="fruit">Would ye like a fruity finish on yer drink, mate?</label>
+              <select name="fruit" class="fruit">
+                <option value="yes">Aye!</option>
+                <option value="no">Nay</option>
+              </select>
+            </div><!--form-group-->
+            <button type="submit" class="btn btn-danger" id="orderSubmit">Let's see yer drink!</button>
+          </form><!--orderOptions form-->
         </div><!--row-->
       </div><!--container-->
     </main>
