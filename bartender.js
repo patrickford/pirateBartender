@@ -45,12 +45,12 @@ $(document).ready(function() {
     e.preventDefault();
     //grab user order values and push to orderValue array 
     $("select").each(function() {
-        if ($(this).val() == "yes") {
-            orderValue.push(true);
-        } 
-        else {
-            orderValue.push(false);
-        }
+      if ($(this).val() == "yes") {
+        orderValue.push(true);
+      } 
+      else {
+        orderValue.push(false);
+      }
     })
     console.log(orderValue);
   })
