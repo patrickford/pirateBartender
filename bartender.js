@@ -23,12 +23,12 @@ $(document).ready(function() {
   orderValue = [];
 
   //constructor for ingredients 
-  var UserOrder = function (strongIngredient, saltyIngredient, bitterIngredient, sweetIngredient, fruityIngredient) {
-    this.strongIngredient = orderValue[0];
-    this.saltyIngredient = orderValue[1];
-    this.bitterIngredient = orderValue[2];
-    this.sweetIngredient = orderValue[3]; 
-    this.fruityIngredient = orderValue[4];
+  var UserOrder = function (strongItem, saltyItem, bitterItem, sweetItem, fruityItem) {
+    this.strongItem = orderValue[0];
+    this.saltyItem = orderValue[1];
+    this.bitterItem = orderValue[2];
+    this.sweetItem = orderValue[3]; 
+    this.fruityItem = orderValue[4];
   }
 
   //handle sumbit event 
