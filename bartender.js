@@ -21,7 +21,7 @@ $(document).ready(function() {
   console.log(pantry);
 
   //empty string for user order
-  orderValue = [];
+  var orderValue = [];
 
   //constructor for ingredients 
   var Order = function (orderValue) {
@@ -31,10 +31,10 @@ $(document).ready(function() {
     this.sweet = orderValue[3]; 
     this.fruity = orderValue[4];
   }//TODO: need to clarify this w/mentor 
-  //wanted to use with math random to get random drink ingredients 
 
   //function to generate random number to pull randomly from ingredients array 
   var GenerateRandomNumber = function (min, max) {
+    //math.floor makes sure integer is rounded down 
     var randomNumber = Math.floor(Math.random() * (max-min + 1)) + min;
     return randomNumber; 
     console.log(randomNumber); 
