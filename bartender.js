@@ -24,12 +24,12 @@ $(document).ready(function() {
   orderValue = [];
 
   //constructor for ingredients 
-  var UserOrder = function (strongItem, saltyItem, bitterItem, sweetItem, fruityItem) {
-    this.strongItem = orderValue[0];
-    this.saltyItem = orderValue[1];
-    this.bitterItem = orderValue[2];
-    this.sweetItem = orderValue[3]; 
-    this.fruityItem = orderValue[4];
+  var Order = function (orderValue) {
+    this.strong = orderValue[0];
+    this.salty = orderValue[1];
+    this.bitter = orderValue[2];
+    this.sweet = orderValue[3]; 
+    this.fruity = orderValue[4];
   }//TODO: need to clarify this w/mentor 
   //wanted to use with math random to get random drink ingredients 
 
