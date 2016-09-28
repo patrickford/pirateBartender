@@ -18,6 +18,7 @@ $(document).ready(function() {
 
   //pantry ingredients object 
   var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
+  console.log(pantry);
 
   //empty string for user order
   orderValue = [];
