@@ -31,6 +31,7 @@ $(document).ready(function() {
     this.sweetItem = orderValue[3]; 
     this.fruityItem = orderValue[4];
   }//TODO: need to clarify this w/mentor 
+  //wanted to use with math random to get random drink ingredients 
 
   //handle sumbit event 
   $("#orderOptions").submit(function(e){
@@ -46,4 +47,6 @@ $(document).ready(function() {
     })
     console.log(orderValue);
   })
-});
+});//TODO: generate math.random() function 
+//have bartender create order 
+//push results to a div 
