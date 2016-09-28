@@ -10,27 +10,25 @@ $(document).ready(function() {
   };
 
   //ingredients object 
-  var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"]),
-  var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"]),
-  var bitter = new Ingredients (["Shake of bitters", "Splash of tonic", "twist of lemon peel"]),
-  var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"]),
-  var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"]),
+  var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"])
+  var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"])
+  var bitter = new Ingredients (["Shake of bitters", "Splash of tonic", "twist of lemon peel"])
+  var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"])
+  var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"])
 
   //pantry ingredients object 
   var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
-
-
 
   //empty string for user order
   orderValue = [];
 
   //constructor for ingredients 
-  var UserOrder = function (strong, salty, bitter, sweet, fruity) {
-    this.strong = orderValue[0];
-    this.salty = orderValue[1];
-    this.bitter = orderValue[2];
-    this.sweet = orderValue[3]; 
-    this.fruity = orderValue[4];
+  var UserOrder = function (strongIngredient, saltyIngredient, bitterIngredient, sweetIngredient, fruityIngredient) {
+    this.strongIngredient = orderValue[0];
+    this.saltyIngredient = orderValue[1];
+    this.bitterIngredient = orderValue[2];
+    this.sweetIngredient = orderValue[3]; 
+    this.fruityIngredient = orderValue[4];
   }
 
   //handle sumbit event 
