@@ -35,9 +35,9 @@ $(document).ready(function() {
 
   //function to generate random number to pull randomly from ingredients array 
   var GenerateRandomNumber = function (min, max) {
-    min = Math.ceil(0);
-    max = Math.floor(2);
-    return Math.floor(Math.random() * (max-min)) + min; 
+    var randomNumber = Math.floor(Math.random() * (max-min + 1)) + min;
+    return randomNumber; 
+    console.log(randomNumber); 
   };
 
   //handle sumbit event & push values into orderValue array 
