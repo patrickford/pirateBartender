@@ -33,7 +33,14 @@ $(document).ready(function() {
   }//TODO: need to clarify this w/mentor 
   //wanted to use with math random to get random drink ingredients 
 
-  //handle sumbit event 
+  //function to generate random number to pull randomly from ingredients array 
+  var GenerateRandomNumber = function (min, max) {
+    min = Math.ceil(0);
+    max = Math.floor(2);
+    return Math.floor(Math.random() * (max-min)) + min; 
+  };
+
+  //handle sumbit event & push values into orderValue array 
   $("#orderOptions").submit(function(e){
     e.preventDefault();
     //grab user order values and push to orderValue array 
