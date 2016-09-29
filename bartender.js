@@ -25,8 +25,9 @@ $(document).ready(function() {
     this.questions = questions; 
   };
 
-  //questions array 
+  //questions & ingredient arrays  
   questions = []; 
+  ingredients = [];
 
   // question object 
   questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
@@ -38,12 +39,27 @@ $(document).ready(function() {
   console.log(questions);
   console.log(typeof Bartender);//shows what type of thing this is for clarification 
 
-  //ingredients object---TODO: need to modify 
-  //var newIngred = new Ingredient (["Glum of rum", "slug of whisky", "splash of gin"]);
- // var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"]);
-  //var bitter = new Ingredients (["Shake of bitters", "Splash of tonic", "twist of lemon peel"]);
- // var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"]);
- // var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"]);
+  //building ingredients object<--strong ingredients--> 
+  ingredients.push(new Ingredient ("glum of rum", "strong"));
+  ingredients.push(new Ingredient ("slug of whisky", "strong"));
+  ingredients.push(new Ingredient ("splash of gin", "strong"));
+  //building ingredients object<--salty ingredients--> 
+  ingredients.push(new Ingredient ("olive on a stick", "salty"));
+  ingredients.push(new Ingredient ("salt-dusted rim", "salty"));
+  ingredients.push(new Ingredient ("rasher of bacon", "salty"));
+  //building ingredients object<--bitter ingredients--> 
+  ingredients.push(new Ingredient ("shake of bitters", "bitter"));
+  ingredients.push(new Ingredient ("splash of tonic", "bitter"));
+  ingredients.push(new Ingredient ("twist of lemon peel", "bitter"));
+  //building ingredients object<--sweet ingredients--> 
+  ingredients.push(new Ingredient ("sugar cube", "sweet"));
+  ingredients.push(new Ingredient ("spoonful of honey", "sweet"));
+  ingredients.push(new Ingredient ("splash of cola", "sweet"));
+  //building ingredients object<--fruity ingredients--> 
+  ingredients.push(new Ingredient ("slice of orange", "fruity"));
+  ingredients.push(new Ingredient ("dash of cassis", "fruity"));
+  ingredients.push(new Ingredient ("cherry on top", "fruity"));
+  console.log(ingredients);
 
   //pantry ingredients object--TODO: need to modify 
   //var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
