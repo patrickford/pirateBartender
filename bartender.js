@@ -1,4 +1,18 @@
 $(document).ready(function() {
+    
+    //questions constructor 
+    var Questions = function (questions) {
+        this.questions = questions; 
+    };
+
+    // question object 
+    var strongQuestion = new Questions ("Do ye like yer drinks strong?");
+    var saltyQuestion = new Questions ("Do ye like it with a salty tang?");
+    var bitterQuestion = new Questions ("Are ye a lubber who likes it bitter?");
+    var sweetQuestion = new Questions ("Would ye like a bit of sweetness with yer poision?");
+    var fruityQuestion = new Questions ("Are ye one for a fruity finish?");
+    
+
 
   //ingredients constructor 
   var Ingredients = function (ingredients) {
@@ -40,6 +54,8 @@ $(document).ready(function() {
     console.log(randomNumber); 
   };
 
+  //function to display questions array for user to choose from 
+
   //handle sumbit event & push values into orderValue array 
   $("#orderOptions").submit(function(e){
     e.preventDefault();
@@ -51,9 +67,10 @@ $(document).ready(function() {
       else {
         orderValue.push(false);
       }
+      GenerateRandomNumber(0,2);
     })
     console.log(orderValue);
   })
-});//TODO: generate math.random() function 
+});//TODO:  
 //have bartender create order 
 //push results to a div 
