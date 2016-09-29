@@ -29,26 +29,21 @@ $(document).ready(function() {
   questions = []; 
 
   // question object 
-  var newQuestion = new Question ("Do ye like yer drinks strong?", "strong");
-  questions.push(newQuestion);
-  var newQuestion = new Question ("Do ye like it with a salty tang?", "salty");
-  questions.push(newQuestion);
-  var newQuestion = new Question ("Are ye a lubber who likes it bitter?", "bitter");
-  questions.push(newQuestion);
-  var newQuestion = new Question ("Would ye like a bit of sweetness with yer poision?", "sweet");
-  questions.push(newQuestion);
-  var newQuestion = new Question ("Are ye one for a fruity finish?", "fruity");
-  questions.push(newQuestion);
+  questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
+  questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
+  questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
+  questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
+  questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
   console.log(questions);
   console.log(typeof Bartender);//shows what type of thing this is for clarification 
 
   //ingredients object---TODO: need to modify 
-  //var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"]);
-  //var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"]);
+  //var newIngred = new Ingredient (["Glum of rum", "slug of whisky", "splash of gin"]);
+ // var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"]);
   //var bitter = new Ingredients (["Shake of bitters", "Splash of tonic", "twist of lemon peel"]);
-  //var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"]);
-  //var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"]);
+ // var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"]);
+ // var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"]);
 
   //pantry ingredients object--TODO: need to modify 
   //var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
