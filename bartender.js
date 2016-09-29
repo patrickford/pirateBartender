@@ -41,6 +41,7 @@ $(document).ready(function() {
   questions.push(newQuestion);
 
   console.log(questions);
+  console.log(typeof Bartender);//shows what type of thing this is for clarification 
 
   //ingredients object---TODO: need to modify 
   //var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"]);
