@@ -1,24 +1,31 @@
 $(document).ready(function() {
     
-    //questions constructor 
-    var Questions = function (questions) {
-        this.questions = questions; 
-    };
+  //questions constructor 
+  var Questions = function (questions) {
+    this.questions = questions; 
+  };
 
-    // question object 
-    var strongQuestion = new Questions ("Do ye like yer drinks strong?");
-    var saltyQuestion = new Questions ("Do ye like it with a salty tang?");
-    var bitterQuestion = new Questions ("Are ye a lubber who likes it bitter?");
-    var sweetQuestion = new Questions ("Would ye like a bit of sweetness with yer poision?");
-    var fruityQuestion = new Questions ("Are ye one for a fruity finish?");
-    
+  // question object 
+  var strongQuestion = new Questions ("Do ye like yer drinks strong?");
+  var saltyQuestion = new Questions ("Do ye like it with a salty tang?");
+  var bitterQuestion = new Questions ("Are ye a lubber who likes it bitter?");
+  var sweetQuestion = new Questions ("Would ye like a bit of sweetness with yer poision?");
+  var fruityQuestion = new Questions ("Are ye one for a fruity finish?");
 
+  var questions = new Questions ([strongQuestion.questions, saltyQuestion.questions, bitterQuestion.questions, sweetQuestion.questions, fruityQuestion.questions]);
+  console.log(questions);
 
+  function displayQuestions () {
+    var display; 
+    $("#questionsDisplay").append(questions.counter); 
+  };//not sure why questions need object 
+  
   //ingredients constructor 
   var Ingredients = function (ingredients) {
     this.ingredients = ingredients;
   };
 
+  //pantry constructor 
   var Pantry = function (availableItems) {
     this.availableItems = availableItems;
   };
@@ -52,9 +59,10 @@ $(document).ready(function() {
     var randomNumber = Math.floor(Math.random() * (max-min + 1)) + min;
     return randomNumber; 
     console.log(randomNumber); 
-  };
+  };//not working
 
   //function to display questions array for user to choose from 
+  displayQuestions();
 
   //handle sumbit event & push values into orderValue array 
   $("#orderOptions").submit(function(e){
