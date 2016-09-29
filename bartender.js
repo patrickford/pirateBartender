@@ -83,6 +83,15 @@ $(document).ready(function() {
     this.fruity = orderValue[4];
   }//TODO: need to clarify this w/mentor 
 
+  //function to itierate through questions and display
+  function displayQuestion () {
+    for (var i = 0; i <questions.length; i++) {
+      
+    }
+  }
+
+  //TODO: need to refactor from this point down-->
+
   //function to generate random number to pull randomly from ingredients array 
   var GenerateRandomNumber = function (max) {
     //math.floor makes sure integer is rounded down 
