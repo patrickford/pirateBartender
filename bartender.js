@@ -1,12 +1,14 @@
 $(document).ready(function() {
     
   //questions constructor 
-  var Questions = function (questions) {
-    this.questions = questions; 
+  var Question = function (question, type) {
+    this.question = question; 
+    this.type = type; 
   };
 
   // question object 
-  var strongQuestion = new Questions ("Do ye like yer drinks strong?");
+  var newQuestion = new Question ("Do ye like yer drinks strong?", "strong");
+  //push question into questions property of bartender 
   var saltyQuestion = new Questions ("Do ye like it with a salty tang?");
   var bitterQuestion = new Questions ("Are ye a lubber who likes it bitter?");
   var sweetQuestion = new Questions ("Would ye like a bit of sweetness with yer poision?");
@@ -15,15 +17,22 @@ $(document).ready(function() {
   var questions = new Questions ([strongQuestion.questions, saltyQuestion.questions, bitterQuestion.questions, sweetQuestion.questions, fruityQuestion.questions]);
   console.log(questions);
 
+  var Bartender = function (question) {
+    this.questions = [];
+  };
+
+
+
   function displayQuestions () {
     var display; 
     $("#questionsDisplay").append(questions.counter); 
   };//not sure why questions need object 
   
   //ingredients constructor 
-  var Ingredients = function (ingredients) {
-    this.ingredients = ingredients;
-  };
+  function Ingredient (name, type) {
+    this.name = name;
+    this.type = type; 
+  }
 
   //pantry constructor 
   var Pantry = function (availableItems) {
@@ -54,12 +63,10 @@ $(document).ready(function() {
   }//TODO: need to clarify this w/mentor 
 
   //function to generate random number to pull randomly from ingredients array 
-  var GenerateRandomNumber = function (min, max) {
+  var GenerateRandomNumber = function (max) {
     //math.floor makes sure integer is rounded down 
-    var randomNumber = Math.floor(Math.random() * (max-min + 1)) + min;
-    return randomNumber; 
-    console.log(randomNumber); 
-  };//not working
+    return Math.floor(Math.random() * max);  
+  };
 
   //function to display questions array for user to choose from 
   displayQuestions();
@@ -75,7 +82,7 @@ $(document).ready(function() {
       else {
         orderValue.push(false);
       }
-      GenerateRandomNumber(0,2);
+      GenerateRandomNumber(0, 2);
     })
     console.log(orderValue);
   })
