@@ -1,43 +1,38 @@
 $(document).ready(function() {
-    
+
+  //<--define constructors and objects--> 
+
   //questions constructor 
   var Question = function (question, type) {
     this.question = question; 
     this.type = type; 
   };
 
-  // question object 
-  var newQuestion = new Question ("Do ye like yer drinks strong?", "strong");
-  //push question into questions property of bartender 
-  var saltyQuestion = new Questions ("Do ye like it with a salty tang?");
-  var bitterQuestion = new Questions ("Are ye a lubber who likes it bitter?");
-  var sweetQuestion = new Questions ("Would ye like a bit of sweetness with yer poision?");
-  var fruityQuestion = new Questions ("Are ye one for a fruity finish?");
-
-  var questions = new Questions ([strongQuestion.questions, saltyQuestion.questions, bitterQuestion.questions, sweetQuestion.questions, fruityQuestion.questions]);
-  console.log(questions);
-
-  var Bartender = function (question) {
-    this.questions = [];
-  };
-
-
-
-  function displayQuestions () {
-    var display; 
-    $("#questionsDisplay").append(questions.counter); 
-  };//not sure why questions need object 
-  
   //ingredients constructor 
-  function Ingredient (name, type) {
+  var Ingredient = function (name, type) {
     this.name = name;
     this.type = type; 
   }
 
   //pantry constructor 
-  var Pantry = function (availableItems) {
-    this.availableItems = availableItems;
+  var Pantry = function (ingredient, type) {
+    this.item = ingredient; 
+    this.type = type; 
   };
+
+  //bartender constructor 
+  var Bartender = function (question) {
+    this.questions = [];
+  };
+
+  // question object 
+  var newQuestion = new Question ("Do ye like yer drinks strong?", "strong");
+  Bartender.questions.push(newQuestion);
+  //push question into questions property of bartender 
+  var newQuestion = new Question ("Do ye like it with a salty tang?", "salty");
+  var newQuestion = new Question ("Are ye a lubber who likes it bitter?", "bitter");
+  var newQuestion = new Question ("Would ye like a bit of sweetness with yer poision?", "sweet");
+  var newQuestion = new Question ("Are ye one for a fruity finish?", "fruity");
 
   //ingredients object 
   var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"]);
@@ -66,7 +61,7 @@ $(document).ready(function() {
   var GenerateRandomNumber = function (max) {
     //math.floor makes sure integer is rounded down 
     return Math.floor(Math.random() * max);  
-  };
+  };//will return max # in array 
 
   //function to display questions array for user to choose from 
   displayQuestions();
