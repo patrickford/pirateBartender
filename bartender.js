@@ -12,7 +12,7 @@ $(document).ready(function() {
   var Ingredient = function (name, type) {
     this.name = name;
     this.type = type; 
-  }
+  };
 
   //pantry constructor 
   var Pantry = function (ingredient, type) {
@@ -44,31 +44,37 @@ $(document).ready(function() {
   ingredients.push(new Ingredient ("glum of rum", "strong"));
   ingredients.push(new Ingredient ("slug of whisky", "strong"));
   ingredients.push(new Ingredient ("splash of gin", "strong"));
+
   //building ingredients object<--salty ingredients--> 
   ingredients.push(new Ingredient ("olive on a stick", "salty"));
   ingredients.push(new Ingredient ("salt-dusted rim", "salty"));
   ingredients.push(new Ingredient ("rasher of bacon", "salty"));
+
   //building ingredients object<--bitter ingredients--> 
   ingredients.push(new Ingredient ("shake of bitters", "bitter"));
   ingredients.push(new Ingredient ("splash of tonic", "bitter"));
   ingredients.push(new Ingredient ("twist of lemon peel", "bitter"));
+
   //building ingredients object<--sweet ingredients--> 
   ingredients.push(new Ingredient ("sugar cube", "sweet"));
   ingredients.push(new Ingredient ("spoonful of honey", "sweet"));
   ingredients.push(new Ingredient ("splash of cola", "sweet"));
+
   //building ingredients object<--fruity ingredients--> 
   ingredients.push(new Ingredient ("slice of orange", "fruity"));
   ingredients.push(new Ingredient ("dash of cassis", "fruity"));
   ingredients.push(new Ingredient ("cherry on top", "fruity"));
+  
   console.log(ingredients);
 
+  //build pantry array from ingredients 
   pantry.push(ingredients);
   console.log(pantry);
 
   //empty array for user order
   var orderValue = [];
 
-  //constructor for ingredients 
+  //constructor for ingredients <--TODO: modify-->
   var Order = function (orderValue) {
     this.strong = orderValue[0];
     this.salty = orderValue[1];
@@ -101,6 +107,7 @@ $(document).ready(function() {
     })
     console.log(orderValue);
   })
-});//TODO:  
+});//TODO:
+//display questions and create array for user input   
 //have bartender create order 
 //push results to a div 
