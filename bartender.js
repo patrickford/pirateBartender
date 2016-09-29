@@ -34,14 +34,14 @@ $(document).ready(function() {
   var newQuestion = new Question ("Would ye like a bit of sweetness with yer poision?", "sweet");
   var newQuestion = new Question ("Are ye one for a fruity finish?", "fruity");
 
-  //ingredients object 
+  //ingredients object---TODO: need to modify 
   var strong = new Ingredients (["Glum of rum", "slug of whisky", "splash of gin"]);
   var salty = new Ingredients (["Olive on a stick", "salt-dusted rim", "rasher of bacon"]);
   var bitter = new Ingredients (["Shake of bitters", "Splash of tonic", "twist of lemon peel"]);
   var sweet = new Ingredients (["Sugar cube", "Spoonful of honey", "Splash of cola"]);
   var fruity = new Ingredients (["Slice of orange", "Dash of cassis", "Cherry on top"]);
 
-  //pantry ingredients object 
+  //pantry ingredients object--TODO: need to modify 
   var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
   console.log(pantry);
 
