@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   //pantry constructor 
   var Pantry = function (ingredient, type) {
-    this.item = ingredient; 
+    this.ingredient = ingredient; 
     this.type = type; 
   };
 
@@ -25,11 +25,12 @@ $(document).ready(function() {
     this.questions = questions; 
   };
 
-  //questions & ingredient arrays  
+  //questions, ingredient, & pantry arrays  
   questions = []; 
   ingredients = [];
+  pantry = [];
 
-  // question object 
+  //building question object array  
   questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
   questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
   questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
@@ -61,11 +62,10 @@ $(document).ready(function() {
   ingredients.push(new Ingredient ("cherry on top", "fruity"));
   console.log(ingredients);
 
-  //pantry ingredients object--TODO: need to modify 
-  //var pantry = new Pantry ([strong.ingredients, salty.ingredients, bitter.ingredients, sweet.ingredients, fruity.ingredients]);
-  //console.log(pantry);
+  pantry.push(ingredients);
+  console.log(pantry);
 
-  //empty string for user order
+  //empty array for user order
   var orderValue = [];
 
   //constructor for ingredients 
