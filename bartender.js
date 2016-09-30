@@ -15,61 +15,83 @@ $(document).ready(function() {
   };
 
   //pantry constructor 
-  var Pantry = function (ingredient, type) {
-    this.ingredient = ingredient; 
-    this.type = type; 
+  var Pantry = function () {
+    this.contents = {}; 
   };
-
+  Pantry.prototype.addIngredient = function (ingredient) {
+    if (this.contents[ingredient.type]) {
+      this.contents[ingredient.type].push(ingredient.name)
+    }
+    else {
+      this.contents[ingredient.type] = [ingredient.name];
+    }
+  }
+  Pantry.prototype.getIngredient = function (type) {
+    console.log(this.contents[type]);
+    if (this.contents[type]) {
+      var index = GenerateRandomNumber(this.contents[type].length); 
+      return this.contents[type][index];
+    }
+  }
+  //worker constructor 
+  var Worker = function (name) {
+    this.name = name; 
+  }
+  Worker.prototype.whoIs = function () {
+    alert("My name is " + this.name);
+  }
   //bartender constructor 
-  var Bartender = function (question) {
-    this.questions = questions; 
+  var Bartender = function (name) {
+    Worker.call(this, name);
+    this.questions = []; 
   };
+  Bartender.prototype = Object.create(Worker.prototype);
+  Bartender.prototype.constructor = Bartender; 
 
-  //questions, ingredient, & pantry arrays  
-  questions = []; 
-  ingredients = [];
-  pantry = [];
+  //questions, ingredient, & pantry arrays   
+  var pantry = new Pantry(); 
+  var Bob = new Bartender("Bob");
 
   //building question object array  
-  questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
-  questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
-  questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
-  questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
-  questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
+  Bob.push(new Question ("Do ye like yer drinks strong?", "strong"));
+  Bob.push(new Question ("Do ye like it with a salty tang?", "salty"));
+  Bob.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
+  Bob.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
+  Bob.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
   console.log(questions);
   console.log(typeof Bartender);//shows what type of thing this is for clarification 
 
   //building ingredients object<--strong ingredients--> 
-  ingredients.push(new Ingredient ("glum of rum", "strong"));
-  ingredients.push(new Ingredient ("slug of whisky", "strong"));
-  ingredients.push(new Ingredient ("splash of gin", "strong"));
+  pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
+  pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
+  pantry.addIngredient(new Ingredient ("splash of gin", "strong"));
 
   //building ingredients object<--salty ingredients--> 
-  ingredients.push(new Ingredient ("olive on a stick", "salty"));
-  ingredients.push(new Ingredient ("salt-dusted rim", "salty"));
-  ingredients.push(new Ingredient ("rasher of bacon", "salty"));
+  pantry.addIngredient(new Ingredient ("olive on a stick", "salty"));
+  pantry.addIngredient(new Ingredient ("salt-dusted rim", "salty"));
+  pantry.addIngredient(new Ingredient ("rasher of bacon", "salty"));
 
   //building ingredients object<--bitter ingredients--> 
-  ingredients.push(new Ingredient ("shake of bitters", "bitter"));
-  ingredients.push(new Ingredient ("splash of tonic", "bitter"));
-  ingredients.push(new Ingredient ("twist of lemon peel", "bitter"));
+  pantry.addIngredient(new Ingredient ("shake of bitters", "bitter"));
+  pantry.addIngredient(new Ingredient ("splash of tonic", "bitter"));
+  pantry.addIngredient(new Ingredient ("twist of lemon peel", "bitter"));
 
   //building ingredients object<--sweet ingredients--> 
-  ingredients.push(new Ingredient ("sugar cube", "sweet"));
-  ingredients.push(new Ingredient ("spoonful of honey", "sweet"));
-  ingredients.push(new Ingredient ("splash of cola", "sweet"));
+  pantry.addIngredient(new Ingredient ("sugar cube", "sweet"));
+  pantry.addIngredient(new Ingredient ("spoonful of honey", "sweet"));
+  pantry.addIngredient(new Ingredient ("splash of cola", "sweet"));
 
   //building ingredients object<--fruity ingredients--> 
-  ingredients.push(new Ingredient ("slice of orange", "fruity"));
-  ingredients.push(new Ingredient ("dash of cassis", "fruity"));
-  ingredients.push(new Ingredient ("cherry on top", "fruity"));
+  pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
+  pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
+  pantry.addIngredient(new Ingredient ("cherry on top", "fruity"));
   
   console.log(ingredients);
 
   //build pantry array from ingredients 
-  pantry.push(ingredients);
   console.log(pantry);
+
 
   //empty array for user order
   var orderValue = [];
@@ -85,7 +107,7 @@ $(document).ready(function() {
 
   //function to itierate through questions and display
   function displayQuestion () {
-    for (var i = 0; i <questions.length; i++) {
+    for (var i = 0; i < Bob.questions.length; i++) {
       
     }
   }
@@ -93,7 +115,7 @@ $(document).ready(function() {
   //TODO: need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
-  var GenerateRandomNumber = function (max) {
+  function GenerateRandomNumber (max) {
     //math.floor makes sure integer is rounded down 
     return Math.floor(Math.random() * max);  
   };//will return max # in array 
