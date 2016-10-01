@@ -60,7 +60,7 @@ $(document).ready(function() {
   Bob.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
   console.log(questions);
-  console.log(typeof Bartender);//shows what type of thing this is for clarification 
+  console.log(typeof Bob);//shows what type of thing this is for clarification 
 
   //building ingredients object<--strong ingredients--> 
   pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
