@@ -39,10 +39,23 @@ $(document).ready(function() {
   //worker constructor 
   var Worker = function (name) {
     this.name = name; 
+    this.customers = {};
   }
 
   Worker.prototype.whoIs = function () {
     alert("My name is " + this.name);
+  }
+
+  Worker.prototype.greetCustomer = function () {
+    var customer = prompt("Ahoy, matey what is your name?"); 
+    if (this.customers[customer]) {
+      //output drink 
+    }
+    else {
+      this.customer[customer] = "";
+      //add favorite drink to array 
+    }
+
   }
 
   //bartender constructor 
@@ -94,7 +107,6 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
   console.log(pantry);
 
-
   //empty array for user order
   var preferences = [];
   var count = 0; 
@@ -114,18 +126,27 @@ $(document).ready(function() {
     }
   };
 
-    $(document).on("click", "#nextQuest", function () {
-      console.log("click");
-      if ($("#userpref").val() == "yes") {
-        preferences.push(Bob.questions[count].type);
-      }
-      count++;
-      console.log(preferences);
-      displayQuestion(); 
-    });//work in progress 
+  $(document).on("click", "#nextQuest", function () {
+    console.log("click");
+    if ($("#userpref").val() == "yes") {
+      preferences.push(Bob.questions[count].type);
+    }
+    count++;
+    console.log(preferences);
+    displayQuestion(); 
+  });
+
+  $("#orderOptions").submit(function (e) {
+    e.preventDefault(); 
+    for (var i = 0; i < preferences.length; i++) {
+      console.log(pantry.getIngredient(preferences[i]));
+    }//once drink made save in customer drink array 
+  });
 
   displayQuestion();
-
+  //TODO: random name generator array 
+  //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
+  //greet customer and remember customer
   //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
@@ -134,22 +155,6 @@ $(document).ready(function() {
     return Math.floor(Math.random() * max);  
   };//will return max # in array 
 
-  //handle sumbit event & push values into orderValue array 
-  //$("#orderOptions").submit(function(e){
-    //e.preventDefault();
-    //grab user order values and push to orderValue array 
-    //$("select").each(function() {
-      //if ($(this).val() == "yes") {
-        //orderValue.push(true);
-      //} 
-      //else {
-        //orderValue.push(false);
-      //}
-      //GenerateRandomNumber(0, 2);
-    //})
-    //console.log(orderValue);
-  //})
-});//TODO:
-//display questions and create array for user input   
+});//TODO:   
 //have bartender create order 
 //push results to a div 
