@@ -96,44 +96,34 @@ $(document).ready(function() {
 
 
   //empty array for user order
-  var orderValue = [];
-
-  //constructor for ingredients <--TODO: modify-->
-  var Order = function (orderValue) {
-    this.strong = orderValue[0];
-    this.salty = orderValue[1];
-    this.bitter = orderValue[2];
-    this.sweet = orderValue[3]; 
-    this.fruity = orderValue[4];
-  }//TODO: ensure working once get display questions up  
+  var preferences = [];
+  var count = 0; 
 
   //function to itierate through questions and display
-  function displayQuestion (i) {
-    var count = 0;
-    if (count < Bob.questions.length) {
-      var displayQuest = "";
-      var answer = "";
-      var nextQuestionbtn = "";
-      displayQuest +="<label for='userpref'>" + Bob.questions[count].question + "</label>";
-      answer +="<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      nextQuestionbtn += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+  function displayQuestion () {
+    $("#preferences").empty(); 
+    if (count < Bob.questions.length) { 
+      var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
+      var answer = "<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
+      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
       $("#preferences").append(displayQuest, answer, nextQuestionbtn);
-      showNextQuestion();
-      count++; 
     }
     else {
-      var orderSubmit = "";
-      orderSubmit += "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
-      $("orderOptions").append(orderSubmit);
+      var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
+      $("#orderOptions").append(orderSubmit);
     }
   };
 
-  function showNextQuestion () { 
-    $("#nextQuest").on("click", function () {
+    $(document).on("click", "#nextQuest", function () {
       console.log("click");
-      //if put displayQuestion (); here increments exponetially 
+      if ($("#userpref").val() == "yes") {
+        preferences.push(Bob.questions[count].type);
+      }
+      count++;
+      console.log(preferences);
+      displayQuestion(); 
     });//work in progress 
-  }
+
   displayQuestion();
 
   //TODO: may need to refactor from this point down-->
