@@ -109,11 +109,15 @@ $(document).ready(function() {
       var answer = "";
       var nextQuestion = "";
       answer += "<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      nextQuestion += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      nextQuestion += "<br><button id='nextQuest' type='submit' class='btn btn-success'>Ask me the next question, bartender!</button>";
       $("#preferences").append(answer, nextQuestion);
-      //work in progress
     }
-  }
+    if (i > Bob.questions.length) {
+      var orderSubmit = "";
+      orderSubmit += "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
+      $("orderOptions").append(orderSubmit);
+    }
+  };//work in progress 
 
   //TODO: may need to refactor from this point down-->
 
@@ -125,22 +129,25 @@ $(document).ready(function() {
 
   //function to display questions array for user to choose from 
   displayQuestion();
+  $("#nextQuest").on("click", function() {
+    displayQuestion();
+  });
 
   //handle sumbit event & push values into orderValue array 
-  $("#orderOptions").submit(function(e){
-    e.preventDefault();
+  //$("#orderOptions").submit(function(e){
+    //e.preventDefault();
     //grab user order values and push to orderValue array 
-    $("select").each(function() {
-      if ($(this).val() == "yes") {
-        orderValue.push(true);
-      } 
-      else {
-        orderValue.push(false);
-      }
-      GenerateRandomNumber(0, 2);
-    })
-    console.log(orderValue);
-  })
+    //$("select").each(function() {
+      //if ($(this).val() == "yes") {
+        //orderValue.push(true);
+      //} 
+      //else {
+        //orderValue.push(false);
+      //}
+      //GenerateRandomNumber(0, 2);
+    //})
+    //console.log(orderValue);
+  //})
 });//TODO:
 //display questions and create array for user input   
 //have bartender create order 
