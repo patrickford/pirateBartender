@@ -32,7 +32,7 @@ $(document).ready(function() {
       var index = GenerateRandomNumber(this.contents[type].length); 
       return this.contents[type][index];
     }
-  }
+  };
   //worker constructor 
   var Worker = function (name) {
     this.name = name; 
@@ -48,48 +48,45 @@ $(document).ready(function() {
   Bartender.prototype = Object.create(Worker.prototype);
   Bartender.prototype.constructor = Bartender; 
 
-  //questions, ingredient, & pantry arrays   
+  //create new pantry and bartender   
   var pantry = new Pantry(); 
   var Bob = new Bartender("Bob");
+  
 
   //building question object array  
-  Bob.push(new Question ("Do ye like yer drinks strong?", "strong"));
-  Bob.push(new Question ("Do ye like it with a salty tang?", "salty"));
-  Bob.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
-  Bob.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
-  Bob.push(new Question ("Are ye one for a fruity finish?", "fruity"));
+  Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
+  Bob.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
+  Bob.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
+  Bob.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
+  Bob.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
-  console.log(questions);
+  console.log(Bob.questions);
   console.log(typeof Bob);//shows what type of thing this is for clarification 
 
-  //building ingredients object<--strong ingredients--> 
+  //building ingredients into pantry object<--strong ingredients--> 
   pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
   pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
   pantry.addIngredient(new Ingredient ("splash of gin", "strong"));
 
-  //building ingredients object<--salty ingredients--> 
+  //building ingredients into pantry object<--salty ingredients--> 
   pantry.addIngredient(new Ingredient ("olive on a stick", "salty"));
   pantry.addIngredient(new Ingredient ("salt-dusted rim", "salty"));
   pantry.addIngredient(new Ingredient ("rasher of bacon", "salty"));
 
-  //building ingredients object<--bitter ingredients--> 
+  //building ingredients into pantry object<--bitter ingredients--> 
   pantry.addIngredient(new Ingredient ("shake of bitters", "bitter"));
   pantry.addIngredient(new Ingredient ("splash of tonic", "bitter"));
   pantry.addIngredient(new Ingredient ("twist of lemon peel", "bitter"));
 
-  //building ingredients object<--sweet ingredients--> 
+  //building ingredients into pantry object<--sweet ingredients--> 
   pantry.addIngredient(new Ingredient ("sugar cube", "sweet"));
   pantry.addIngredient(new Ingredient ("spoonful of honey", "sweet"));
   pantry.addIngredient(new Ingredient ("splash of cola", "sweet"));
 
-  //building ingredients object<--fruity ingredients--> 
+  //building ingredients into pantry object<--fruity ingredients--> 
   pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
   pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
-  pantry.addIngredient(new Ingredient ("cherry on top", "fruity"));
-  
-  console.log(ingredients);
-
-  //build pantry array from ingredients 
+  pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
   console.log(pantry);
 
 
@@ -103,16 +100,22 @@ $(document).ready(function() {
     this.bitter = orderValue[2];
     this.sweet = orderValue[3]; 
     this.fruity = orderValue[4];
-  }//TODO: need to clarify this w/mentor 
+  }//TODO: ensure working once get display questions up  
 
   //function to itierate through questions and display
   function displayQuestion () {
     for (var i = 0; i < Bob.questions.length; i++) {
-      
+      $("#preferences").text(Bob.questions[i].question);
+      var answer = "";
+      var nextQuestion = "";
+      answer += "<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
+      nextQuestion += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      $("#preferences").append(answer, nextQuestion);
+      //work in progress
     }
   }
 
-  //TODO: need to refactor from this point down-->
+  //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
   function GenerateRandomNumber (max) {
@@ -121,7 +124,7 @@ $(document).ready(function() {
   };//will return max # in array 
 
   //function to display questions array for user to choose from 
-  //displayQuestions();
+  displayQuestion();
 
   //handle sumbit event & push values into orderValue array 
   $("#orderOptions").submit(function(e){
