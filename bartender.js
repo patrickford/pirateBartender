@@ -108,8 +108,9 @@ $(document).ready(function() {
   }//TODO: ensure working once get display questions up  
 
   //function to itierate through questions and display
-  function displayQuestion () {
-    for (i = 0; i < Bob.questions.length; i++) {
+  function displayQuestion (i) {
+    var i = 0;
+    if (i < Bob.questions.length) {
       $("#orderOptions").text(Bob.questions[i].question);
       var answer = "";
       var nextQuestion = "";
@@ -118,7 +119,7 @@ $(document).ready(function() {
       $("#orderOptions").append(answer, nextQuestion);
       showNextQuestion();
     }
-    if (i > Bob.questions.length) {
+    else {
       var orderSubmit = "";
       orderSubmit += "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
       $("orderOptions").append(orderSubmit);
@@ -126,6 +127,7 @@ $(document).ready(function() {
   };//work in progress 
 
   function showNextQuestion () {
+    console.log("test")
     var NextQuestion = 0; 
     $("#preferences").on("click", "#nextQuest", function () {
       displayQuestion(NextQuestion);
@@ -133,7 +135,7 @@ $(document).ready(function() {
     })
   }
   displayQuestion();
-  
+  //(i > Bob.questions.length)
   //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
