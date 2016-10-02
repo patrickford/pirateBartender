@@ -18,6 +18,7 @@ $(document).ready(function() {
   var Pantry = function () {
     this.contents = {}; 
   };
+
   Pantry.prototype.addIngredient = function (ingredient) {
     if (this.contents[ingredient.type]) {
       this.contents[ingredient.type].push(ingredient.name)
@@ -26,6 +27,7 @@ $(document).ready(function() {
       this.contents[ingredient.type] = [ingredient.name];
     }
   }
+
   Pantry.prototype.getIngredient = function (type) {
     console.log(this.contents[type]);
     if (this.contents[type]) {
@@ -33,18 +35,22 @@ $(document).ready(function() {
       return this.contents[type][index];
     }
   };
+
   //worker constructor 
   var Worker = function (name) {
     this.name = name; 
   }
+
   Worker.prototype.whoIs = function () {
     alert("My name is " + this.name);
   }
+
   //bartender constructor 
   var Bartender = function (name) {
     Worker.call(this, name);
     this.questions = []; 
   };
+
   Bartender.prototype = Object.create(Worker.prototype);
   Bartender.prototype.constructor = Bartender; 
 
@@ -52,7 +58,6 @@ $(document).ready(function() {
   var pantry = new Pantry(); 
   var Bob = new Bartender("Bob");
   
-
   //building question object array  
   Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
   Bob.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
