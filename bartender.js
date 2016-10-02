@@ -109,33 +109,33 @@ $(document).ready(function() {
 
   //function to itierate through questions and display
   function displayQuestion (i) {
-    var i = 0;
-    if (i < Bob.questions.length) {
-      $("#orderOptions").text(Bob.questions[i].question);
+    var count = 0;
+    if (count < Bob.questions.length) {
+      var displayQuest = "";
       var answer = "";
-      var nextQuestion = "";
-      answer += "<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      nextQuestion += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
-      $("#orderOptions").append(answer, nextQuestion);
+      var nextQuestionbtn = "";
+      displayQuest +="<label for='userpref'>" + Bob.questions[count].question + "</label>";
+      answer +="<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
+      nextQuestionbtn += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      $("#preferences").append(displayQuest, answer, nextQuestionbtn);
       showNextQuestion();
+      count++; 
     }
     else {
       var orderSubmit = "";
       orderSubmit += "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
       $("orderOptions").append(orderSubmit);
     }
-  };//work in progress 
+  };
 
-  function showNextQuestion () {
-    console.log("test")
-    var NextQuestion = 0; 
-    $("#preferences").on("click", "#nextQuest", function () {
-      displayQuestion(NextQuestion);
-      NextQuestion++; 
-    })
+  function showNextQuestion () { 
+    $("#nextQuest").on("click", function () {
+      console.log("click");
+      //if put displayQuestion (); here increments exponetially 
+    });//work in progress 
   }
   displayQuestion();
-  //(i > Bob.questions.length)
+
   //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
