@@ -109,13 +109,14 @@ $(document).ready(function() {
 
   //function to itierate through questions and display
   function displayQuestion () {
-    for (var i = 0; i < Bob.questions.length; i++) {
-      $("#preferences").text(Bob.questions[i].question);
+    for (i = 0; i < Bob.questions.length; i++) {
+      $("#orderOptions").text(Bob.questions[i].question);
       var answer = "";
       var nextQuestion = "";
       answer += "<br><select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      nextQuestion += "<br><button id='nextQuest' type='submit' class='btn btn-success'>Ask me the next question, bartender!</button>";
-      $("#preferences").append(answer, nextQuestion);
+      nextQuestion += "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      $("#orderOptions").append(answer, nextQuestion);
+      showNextQuestion();
     }
     if (i > Bob.questions.length) {
       var orderSubmit = "";
@@ -124,6 +125,15 @@ $(document).ready(function() {
     }
   };//work in progress 
 
+  function showNextQuestion () {
+    var NextQuestion = 0; 
+    $("#preferences").on("click", "#nextQuest", function () {
+      displayQuestion(NextQuestion);
+      NextQuestion++; 
+    })
+  }
+  displayQuestion();
+  
   //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
@@ -131,12 +141,6 @@ $(document).ready(function() {
     //math.floor makes sure integer is rounded down 
     return Math.floor(Math.random() * max);  
   };//will return max # in array 
-
-  //function to display questions array for user to choose from 
-  displayQuestion();
-  $("#nextQuest").on("click", function() {
-    displayQuestion();
-  });
 
   //handle sumbit event & push values into orderValue array 
   //$("#orderOptions").submit(function(e){
