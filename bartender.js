@@ -29,7 +29,6 @@ $(document).ready(function() {
   }
 
   Pantry.prototype.getIngredient = function (type) {
-    console.log(this.contents[type]);
     if (this.contents[type]) {
       var index = GenerateRandomNumber(this.contents[type].length); 
       return this.contents[type][index];
@@ -107,8 +106,9 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
   console.log(pantry);
 
-  //empty array for user order
+  //empty array for user order and preferences to build order 
   var preferences = [];
+  var userOrder = [];
   //set global count for display function and click event
   var count = 0; 
 
@@ -131,6 +131,12 @@ $(document).ready(function() {
     if ($("#userpref").val() == "yes") {
       preferences.push(Bob.questions[count].type);
     }
+    //if (preferences >= 4) {
+      //console.log("chose more than 3");
+    //}
+    //if (preferences == "") {
+      //$("#results").text("Here is your glass of water, landsman.")
+    //}/TODO: work in progress--need to get first condition to display first 
     count++;
     console.log(preferences);
     displayQuestion(); 
@@ -139,7 +145,10 @@ $(document).ready(function() {
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < preferences.length; i++) {
-      console.log(pantry.getIngredient(preferences[i]));
+      pantry.getIngredient(preferences[i]);
+      userOrder.push(pantry.getIngredient(preferences[i]));
+      console.log(userOrder);
+
        
     }//once drink made save in customer drink array 
   });
