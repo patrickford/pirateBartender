@@ -127,6 +127,13 @@ $(document).ready(function() {
     }
   };
 
+  //function to display results to user once drink is created--make sure to create names randomly to add!! 
+  function displayResults () {
+    var results = "<h5>" + userOrder + "</h5>"
+    $("#results").html(results);
+  }
+
+  //once user answers question, type of ingredient is grabbed and put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() == "yes") {
       preferences.push(Bob.questions[count].type);
@@ -148,8 +155,7 @@ $(document).ready(function() {
       pantry.getIngredient(preferences[i]);
       userOrder.push(pantry.getIngredient(preferences[i]));
       console.log(userOrder);
-
-       
+      displayResults();
     }//once drink made save in customer drink array 
   });
 
