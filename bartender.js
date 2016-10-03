@@ -109,6 +109,7 @@ $(document).ready(function() {
   //empty array for user order and preferences to build order 
   var preferences = [];
   var userOrder = [];
+
   //set global count for display function and click event
   var count = 0; 
 
@@ -137,7 +138,7 @@ $(document).ready(function() {
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() == "yes") {
       preferences.push(Bob.questions[count].type);
-    }
+    }//work in progress
     //if (preferences >= 4) {
       //console.log("chose more than 3");
     //}
@@ -163,14 +164,11 @@ $(document).ready(function() {
   //TODO: random name generator array 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
-  //TODO: may need to refactor from this point down-->
 
   //function to generate random number to pull randomly from ingredients array 
   function GenerateRandomNumber (max) {
     //math.floor makes sure integer is rounded down 
     return Math.floor(Math.random() * max);  
-  };//will return max # in array 
+  };
 
-});//TODO:   
-//have bartender create order 
-//push results to a div 
+});  
