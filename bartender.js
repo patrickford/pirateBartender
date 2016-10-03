@@ -115,7 +115,7 @@ $(document).ready(function() {
 
   //function to generate random number to pull randomly from ingredients array 
   function generateRandomNumber (max) {
-    //math.floor makes sure integer is rounded down 
+    //math.floor ensure integer is rounded down 
     return Math.floor(Math.random() * max);  
   };
 
