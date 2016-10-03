@@ -77,9 +77,6 @@ $(document).ready(function() {
   Bob.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
   Bob.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
-  console.log(Bob.questions);
-  console.log(typeof Bob);//shows what type of thing this is for clarification 
-
   //building ingredients into pantry object<--strong ingredients--> 
   pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
   pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
@@ -104,7 +101,6 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
   pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
-  console.log(pantry);
 
   //empty array for user order and preferences to build order 
   var preferences = [];
