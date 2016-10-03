@@ -102,6 +102,10 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
 
+  //adj and nouns for drink names to be randomly selected
+  var drinkAdjectives = ["port", "blimey", "clap of thunder", "dead man", "shark bait", "sea legs", "yellow jack", "sink me"];
+  var drinkNouns = ["landlubber", "grog", "crow's next", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
+
   //empty array for user order and preferences to build order 
   var preferences = [];
   var userOrder = [];
