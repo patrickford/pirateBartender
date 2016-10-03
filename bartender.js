@@ -55,7 +55,6 @@ $(document).ready(function() {
       //displayQuestion();
       //push drink name to customer array as well
     }
-
   }
 
   //bartender constructor 
@@ -114,6 +113,12 @@ $(document).ready(function() {
   //set global count for display function and click event
   var count = 0; 
 
+  //function to generate random number to pull randomly from ingredients array 
+  function generateRandomNumber (max) {
+    //math.floor makes sure integer is rounded down 
+    return Math.floor(Math.random() * max);  
+  };
+
   //function to itierate through questions and display
   function displayQuestion () {
     $("#preferences").empty(); 
@@ -142,14 +147,11 @@ $(document).ready(function() {
     $("#results").html(results);
   }
 
-  //once user answers question, type of ingredient is grabbed and put into preferences array 
+  //once user answers question, type of drink is put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() == "yes") {
       preferences.push(Bob.questions[count].type);
-    }//work in progress
-    //if (preferences >= 4) {
-      //console.log("chose more than 3");
-    //}
+    }
     //if (preferences == "") {
       //$("#results").text("Here is your glass of water, landsman.")
     //}/TODO: work in progress--need to get first condition to display first 
@@ -166,7 +168,7 @@ $(document).ready(function() {
       console.log(userOrder);
       getRandomAdjNoun();
       displayResults();
-    }//once drink made save in customer drink array 
+    }//TODO:once drink made save in customer drink array 
   });
 
   displayQuestion();
@@ -175,11 +177,4 @@ $(document).ready(function() {
   //TODO: random name generator array 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
-
-  //function to generate random number to pull randomly from ingredients array 
-  function generateRandomNumber (max) {
-    //math.floor makes sure integer is rounded down 
-    return Math.floor(Math.random() * max);  
-  };
-
 });  
