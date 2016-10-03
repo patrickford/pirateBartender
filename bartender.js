@@ -51,8 +51,9 @@ $(document).ready(function() {
       //output drink 
     }
     else {
-      this.customer[customer] = "";
-      //add favorite drink to array 
+      this.customer[customer] = ""; 
+      //displayQuestion();
+      //push drink name to customer array as well
     }
 
   }
@@ -169,6 +170,8 @@ $(document).ready(function() {
   });
 
   displayQuestion();
+  //Worker.prototype.greetCustomer();
+
   //TODO: random name generator array 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
