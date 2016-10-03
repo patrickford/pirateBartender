@@ -128,14 +128,17 @@ $(document).ready(function() {
     }
   };
 
-  //function to display results to user once drink is created--make sure to create names randomly to add!! 
+  //function to get random adjective and noun for drink names 
+  function getRandomAdjNoun () {
+      var userIndex = generateRandomNumber(drinkAdjectives.length);
+      console.log(generateRandomNumber(drinkAdjectives.length));
+      return userIndex;
+  }//work in progress 
+
+  //function to display results to user once drink is created
   function displayResults () {
-    for (var i = 0; i < drinkAdjectives.length; i++) {//not working need index?
-      generateRandomNumber(drinkAdjectives);
-      console.log(generateRandomNumber(drinkAdjectives));
-      var results = "<h5>" + userOrder + "</h5>"
-      $("#results").html(results);
-    }
+    var results = "<h5>" + userOrder + "</h5>"
+    $("#results").html(results);
   }
 
   //once user answers question, type of ingredient is grabbed and put into preferences array 
@@ -160,6 +163,7 @@ $(document).ready(function() {
       pantry.getIngredient(preferences[i]);
       userOrder.push(pantry.getIngredient(preferences[i]));
       console.log(userOrder);
+      getRandomAdjNoun();
       displayResults();
     }//once drink made save in customer drink array 
   });
