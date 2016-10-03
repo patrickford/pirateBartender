@@ -30,7 +30,7 @@ $(document).ready(function() {
 
   Pantry.prototype.getIngredient = function (type) {
     if (this.contents[type]) {
-      var index = GenerateRandomNumber(this.contents[type].length); 
+      var index = generateRandomNumber(this.contents[type].length); 
       return this.contents[type][index];
     }
   };
@@ -130,8 +130,12 @@ $(document).ready(function() {
 
   //function to display results to user once drink is created--make sure to create names randomly to add!! 
   function displayResults () {
-    var results = "<h5>" + userOrder + "</h5>"
-    $("#results").html(results);
+    for (var i = 0; i < drinkAdjectives.length; i++) {//not working need index?
+      generateRandomNumber(drinkAdjectives);
+      console.log(generateRandomNumber(drinkAdjectives));
+      var results = "<h5>" + userOrder + "</h5>"
+      $("#results").html(results);
+    }
   }
 
   //once user answers question, type of ingredient is grabbed and put into preferences array 
@@ -166,7 +170,7 @@ $(document).ready(function() {
   //greet customer and remember customer
 
   //function to generate random number to pull randomly from ingredients array 
-  function GenerateRandomNumber (max) {
+  function generateRandomNumber (max) {
     //math.floor makes sure integer is rounded down 
     return Math.floor(Math.random() * max);  
   };
