@@ -109,6 +109,7 @@ $(document).ready(function() {
 
   //empty array for user order
   var preferences = [];
+  //set global count for display function and click event
   var count = 0; 
 
   //function to itierate through questions and display
@@ -127,7 +128,6 @@ $(document).ready(function() {
   };
 
   $(document).on("click", "#nextQuest", function () {
-    console.log("click");
     if ($("#userpref").val() == "yes") {
       preferences.push(Bob.questions[count].type);
     }
@@ -140,6 +140,7 @@ $(document).ready(function() {
     e.preventDefault(); 
     for (var i = 0; i < preferences.length; i++) {
       console.log(pantry.getIngredient(preferences[i]));
+       
     }//once drink made save in customer drink array 
   });
 
