@@ -166,7 +166,7 @@ $(document).ready(function() {
     }//TODO: work in progress 
     count++;
     console.log(preferences);
-    displayQuestion(); 
+    displayQuestion(Batender.Bob); //not getting name 
   });
 
   //grab preferences and randomly get ingredient from pantry from each type of preference
@@ -183,9 +183,10 @@ $(document).ready(function() {
   });
 
   displayQuestion();
+  Worker.prototype.whoIs();
   //Worker.prototype.greetCustomer();
 
-  //TODO: random name generator array 
+  //TODO: 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
 });  
