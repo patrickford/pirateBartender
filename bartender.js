@@ -139,8 +139,6 @@ $(document).ready(function() {
   function getRandomAdjNoun () {
       var userIndexAdj = generateRandomNumber(drinkAdjectives.length);
       var userIndexNoun = generateRandomNumber(drinkNouns.length);
-      console.log(drinkAdjectives[userIndexAdj]);
-      console.log(drinkNouns[userIndexNoun]);
       var drinkName = drinkAdjectives[userIndexAdj] + " " + drinkNouns[userIndexNoun];
       var displayDrinkName = "<h3>" + drinkName + "</h3>";
       userOrder.push(drinkName);
