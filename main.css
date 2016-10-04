@@ -1,3 +1,18 @@
-h1 {
+h1, #results {
 	text-align: center; 
+}
+#preferences {
+    text-align: center; 
+}
+select {
+    margin-left: 10px;
+}
+#orderOptions {
+    text-align: center; 
+}
+.container {
+    margin-top: 50px; 
+}
+#results {
+    margin-top: 15px; 
 }
