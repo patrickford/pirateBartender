@@ -104,7 +104,7 @@ $(document).ready(function() {
 
   //adj and nouns for drink names to be randomly selected
   var drinkAdjectives = ["port", "blimey", "clap of thunder", "dead man", "shark bait", "sea legs", "yellow jack", "sink me"];
-  var drinkNouns = ["landlubber", "grog", "crow's next", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
+  var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
 
   //empty array for user order and preferences to build order 
   var preferences = [];
@@ -136,9 +136,11 @@ $(document).ready(function() {
 
   //function to get random adjective and noun for drink names 
   function getRandomAdjNoun () {
-      var userIndex = generateRandomNumber(drinkAdjectives.length);
-      console.log(generateRandomNumber(drinkAdjectives.length));
-      return userIndex;
+      var userIndexAdj = generateRandomNumber(drinkAdjectives.length);
+      var userIndexNoun = generateRandomNumber(drinkNouns.length);
+      console.log(drinkAdjectives[userIndexAdj]);
+      console.log(drinkNouns[userIndexNoun]);
+      return drinkAdjectives[userIndexAdj], drinkNouns[userIndexNoun];
   }//work in progress 
 
   //function to display results to user once drink is created
