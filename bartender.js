@@ -48,13 +48,13 @@ $(document).ready(function() {
   Worker.prototype.greetCustomer = function () {
     var customer = prompt("Ahoy, matey what is your name?"); 
     if (this.customers[customer]) {
-      //output drink 
+      customers.find(customer)
     }
     else {
-      this.customer[customer] = ""; 
-      //displayQuestion();
+      this.customers[customer] = "";  
+      displayQuestion();
       //push drink name to customer array as well
-    }
+    }//work in progress 
   }
 
   //bartender constructor 
@@ -109,6 +109,7 @@ $(document).ready(function() {
   //empty array for user order and preferences to build order 
   var preferences = [];
   var userOrder = [];
+  var userOrderIngred = [];
 
   //set global count for display function and click event
   var count = 0; 
@@ -140,14 +141,17 @@ $(document).ready(function() {
       var userIndexNoun = generateRandomNumber(drinkNouns.length);
       console.log(drinkAdjectives[userIndexAdj]);
       console.log(drinkNouns[userIndexNoun]);
-      var drinkName = "<h3>" + drinkAdjectives[userIndexAdj] + " " + drinkNouns[userIndexNoun] + "</h3>";
-      $("#results").append(drinkName)
+      var drinkName = drinkAdjectives[userIndexAdj] + " " + drinkNouns[userIndexNoun];
+      var displayDrinkName = "<h3>" + drinkName + "</h3>";
+      userOrder.push(drinkName);
+      console.log(userOrder);
+      $("#results").append(displayDrinkName);
       return drinkAdjectives[userIndexAdj], drinkNouns[userIndexNoun];
   };
 
   //function to display results to user once drink is created
   function displayResults () {
-    var results = "<h5>" + userOrder + "</h5>"
+    var results = "<h5>" + userOrderIngred + "</h5>"
     $("#results").append(results);
   };
 
@@ -168,11 +172,11 @@ $(document).ready(function() {
     e.preventDefault(); 
     for (var i = 0; i < preferences.length; i++) {
       pantry.getIngredient(preferences[i]);
-      userOrder.push(pantry.getIngredient(preferences[i]));
-      console.log(userOrder);
-      getRandomAdjNoun();
-      displayResults();
-    }//TODO:once drink made save in customer drink array 
+      userOrderIngred.push(pantry.getIngredient(preferences[i]));
+      console.log(userOrderIngred);
+    }//TODO:once drink made save in customer drink array
+    getRandomAdjNoun();
+    displayResults(); 
   });
 
   displayQuestion();
