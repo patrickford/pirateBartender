@@ -49,6 +49,9 @@ $(document).ready(function() {
     var customer = prompt("Ahoy, matey what is your name?"); 
     if (this.customers[customer]) {
       customers.find(customer)
+      var previousCustomer += "<h2>" + customer + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
+        userOrderIngred + "</h5>";
+      $("#results").append(previousCustomer);
     }
     else {
       this.customers[customer] = "";  
@@ -106,7 +109,7 @@ $(document).ready(function() {
   var drinkAdjectives = ["port", "blimey", "clap of thunder", "dead man", "shark bait", "sea legs", "yellow jack", "sink me"];
   var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
 
-  //empty array for user order and preferences to build order 
+  //empty array for user order, preferences and drink name for customer to build order 
   var preferences = [];
   var userOrder = [];
   var userOrderIngred = [];
