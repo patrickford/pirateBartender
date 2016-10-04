@@ -140,18 +140,20 @@ $(document).ready(function() {
       var userIndexNoun = generateRandomNumber(drinkNouns.length);
       console.log(drinkAdjectives[userIndexAdj]);
       console.log(drinkNouns[userIndexNoun]);
+      var drinkName = "<h3>" + drinkAdjectives[userIndexAdj] + " " + drinkNouns[userIndexNoun] + "</h3>";
+      $("#results").append(drinkName)
       return drinkAdjectives[userIndexAdj], drinkNouns[userIndexNoun];
-  }//work in progress 
+  };
 
   //function to display results to user once drink is created
   function displayResults () {
     var results = "<h5>" + userOrder + "</h5>"
-    $("#results").html(results);
-  }
+    $("#results").append(results);
+  };
 
   //once user answers question, type of drink is put into preferences array 
   $(document).on("click", "#nextQuest", function () {
-    if ($("#userpref").val() == "yes") {
+    if ($("#userpref").val() === "yes") {
       preferences.push(Bob.questions[count].type);
     }
     //if (preferences == "") {
