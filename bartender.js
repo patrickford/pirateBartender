@@ -49,7 +49,7 @@ $(document).ready(function() {
     var customer = prompt("Ahoy, matey what is your name?"); 
     if (this.customers[customer]) {
       customers.find(customer)
-      var previousCustomer += "<h2>" + customer + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
+      var previousCustomer = "<h2>" + customer + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
         userOrderIngred + "</h5>";
       $("#results").append(previousCustomer);
     }
@@ -161,21 +161,23 @@ $(document).ready(function() {
     if ($("#userpref").val() === "yes") {
       preferences.push(Bob.questions[count].type);
     }
-    //if (preferences == "") {
-      //$("#results").text("Here is your glass of water, landsman.")
-    //}/TODO: work in progress--need to get first condition to display first 
+    if (preferences === []) {
+      $("#results").text("Here is your glass of water, landsman.")
+    }//TODO: work in progress 
     count++;
     console.log(preferences);
     displayQuestion(); 
   });
 
+  //grab preferences and randomly get ingredient from pantry from each type of preference
+  //display results for user of their drink 
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < preferences.length; i++) {
       pantry.getIngredient(preferences[i]);
       userOrderIngred.push(pantry.getIngredient(preferences[i]));
       console.log(userOrderIngred);
-    }//TODO:once drink made save in customer drink array
+    }
     getRandomAdjNoun();
     displayResults(); 
   });
