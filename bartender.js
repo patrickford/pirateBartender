@@ -35,15 +35,22 @@ $(document).ready(function() {
     }
   };
 
+  //remember order constructor 
+  var customerOrder = function (customer, userOrder, userOrderIngred) {
+    this.customer = customerName; 
+    this.userOrder = userOrder; 
+    this.userOrderIngred = userOrderIngred;
+  };
+
   //worker constructor 
   var Worker = function (name) {
     this.name = name; 
     this.customers = {};
-  }
+  };
 
-  Worker.prototype.whoIs = function () {
+  Worker.prototype.whoIs = function (name) {
     alert("My name is " + this.name);
-  }
+  };
 
   Worker.prototype.greetCustomer = function () {
     var customer = prompt("Ahoy, matey what is your name?"); 
@@ -58,7 +65,7 @@ $(document).ready(function() {
       displayQuestion();
       //push drink name to customer array as well
     }//work in progress 
-  }
+  };
 
   //bartender constructor 
   var Bartender = function (name) {
@@ -183,7 +190,9 @@ $(document).ready(function() {
   });
 
   displayQuestion();
-  Worker.prototype.whoIs(Bob);//not working
+  console.log(Bob);
+  Worker.prototype.whoIs();//not working
+
   //Worker.prototype.greetCustomer();
 
   //TODO: 
