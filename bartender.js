@@ -166,7 +166,7 @@ $(document).ready(function() {
     }//TODO: work in progress 
     count++;
     console.log(preferences);
-    displayQuestion(Batender.Bob); //not getting name 
+    displayQuestion(); 
   });
 
   //grab preferences and randomly get ingredient from pantry from each type of preference
@@ -183,7 +183,7 @@ $(document).ready(function() {
   });
 
   displayQuestion();
-  Worker.prototype.whoIs();
+  Worker.prototype.whoIs(Bob);//not working
   //Worker.prototype.greetCustomer();
 
   //TODO: 
