@@ -27,6 +27,7 @@ $(document).ready(function() {
       this.contents[ingredient.type] = [ingredient.name];
     }
   }
+  console.log(pantry);
 
   Pantry.prototype.getIngredient = function (type) {
     if (this.contents[type]) {
@@ -36,11 +37,11 @@ $(document).ready(function() {
   };
 
   //remember order constructor 
-  var customerOrder = function (customer, userOrder, userOrderIngred) {
-    this.customer = customerName; 
-    this.userOrder = userOrder; 
-    this.userOrderIngred = userOrderIngred;
-  };
+  var Customer = function (name, drink, preferences) {
+    this.name = name; 
+    this.drink = drink; 
+    this.preferences = preferences;
+  };//work in progress 
 
   //worker constructor 
   var Worker = function (name) {
@@ -48,23 +49,25 @@ $(document).ready(function() {
     this.customers = {};
   };
 
-  Worker.prototype.whoIs = function (name) {
+  Worker.prototype.whoIs = function () {
     alert("My name is " + this.name);
   };
 
   Worker.prototype.greetCustomer = function () {
-    var customer = prompt("Ahoy, matey what is your name?"); 
-    if (this.customers[customer]) {
-      customers.find(customer)
-      var previousCustomer = "<h2>" + customer + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
-        userOrderIngred + "</h5>";
-      $("#results").append(previousCustomer);
+    var name = prompt("Ahoy, matey what is your name?"); 
+    if (this.customers[name]) {
+      customers.find(name)
+      var greeting = "<h2>" + name + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
+        preferences + "</h5>";
+      $("#results").append(greeting);
     }
-    else {
-      this.customers[customer] = "";  
+    else {  
       displayQuestion();
-      //push drink name to customer array as well
-    }//work in progress 
+    }
+  };
+
+  Worker.prototype.addCustomer = function (customer) {
+      this.customers[customer.name] = customer;
   };
 
   //bartender constructor 
@@ -111,13 +114,13 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
   pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
+  console.log(pantry);
 
   //adj and nouns for drink names to be randomly selected
   var drinkAdjectives = ["port", "blimey", "clap of thunder", "dead man", "shark bait", "sea legs", "yellow jack", "sink me"];
   var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
 
   //empty array for user order, preferences and drink name for customer to build order 
-  var preferences = [];
   var userOrder = [];
   var userOrderIngred = [];
 
@@ -146,33 +149,29 @@ $(document).ready(function() {
   };
 
   //function to get random adjective and noun for drink names 
-  function getRandomAdjNoun () {
-      var userIndexAdj = generateRandomNumber(drinkAdjectives.length);
-      var userIndexNoun = generateRandomNumber(drinkNouns.length);
-      var drinkName = drinkAdjectives[userIndexAdj] + " " + drinkNouns[userIndexNoun];
-      var displayDrinkName = "<h3>" + drinkName + "</h3>";
-      userOrder.push(drinkName);
-      console.log(userOrder);
-      $("#results").append(displayDrinkName);
-      return drinkAdjectives[userIndexAdj], drinkNouns[userIndexNoun];
+  function generateDrinkName () {
+      var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
+      var nounIndex = generateRandomNumber(drinkNouns.length);
+      var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
+      return drinkName; 
   };
 
   //function to display results to user once drink is created
-  function displayResults () {
-    var results = "<h5>" + userOrderIngred + "</h5>"
-    $("#results").append(results);
+  function displayResults (drink, preferences) {
+    $("#results").append("<h3>" + drink + "</h3>");
+    $("#results").append("<h5>" + preferences + "</h5>");
   };
 
   //once user answers question, type of drink is put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
-      preferences.push(Bob.questions[count].type);
+      guest.preferences.push(Bob.questions[count].type);
     }
-    if (preferences === []) {
-      $("#results").text("Here is your glass of water, landsman.")
-    }//TODO: work in progress 
+    //if (guest.preferences === []) {
+     // $("#results").text("Here is your glass of water, landsman.")
+    //}//TODO: work in progress--wrong spot for water-->
     count++;
-    console.log(preferences);
+    console.log(guest.preferences);
     displayQuestion(); 
   });
 
@@ -181,19 +180,18 @@ $(document).ready(function() {
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < preferences.length; i++) {
-      pantry.getIngredient(preferences[i]);
-      userOrderIngred.push(pantry.getIngredient(preferences[i]));
+      pantry.getIngredient(guest.preferences[i]);
+      userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
       console.log(userOrderIngred);
     }
     getRandomAdjNoun();
     displayResults(); 
   });
-
+  var guest = new Customer("Sam", "", []);
   displayQuestion();
-  console.log(Bob);
-  Worker.prototype.whoIs();//not working
+  console.log(Bob.name);
+  Bob.whoIs();
 
-  //Worker.prototype.greetCustomer();
 
   //TODO: 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
