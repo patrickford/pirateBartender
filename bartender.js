@@ -157,9 +157,9 @@ $(document).ready(function() {
   };
 
   //function to display results to user once drink is created
-  function displayResults (drink, preferences) {
+  function displayResults (drink, ingredients) {
     $("#results").append("<h3>" + drink + "</h3>");
-    $("#results").append("<h5>" + preferences + "</h5>");
+    $("#results").append("<h5>" + ingredients + "</h5>");
   };
 
   //once user answers question, type of drink is put into preferences array 
@@ -179,13 +179,14 @@ $(document).ready(function() {
   //display results for user of their drink 
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
-    for (var i = 0; i < preferences.length; i++) {
+    console.log("Preferences = ", guest.preferences)
+    for (var i = 0; i < guest.preferences.length; i++) {
       pantry.getIngredient(guest.preferences[i]);
       userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
       console.log(userOrderIngred);
     }
-    generateDrinkName();
-    displayResults(); 
+    var name = generateDrinkName();
+    displayResults(name, userOrderIngred); 
   });
   var guest = new Customer("Sam", "", []);
   displayQuestion();
