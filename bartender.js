@@ -184,7 +184,7 @@ $(document).ready(function() {
       userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
       console.log(userOrderIngred);
     }
-    getRandomAdjNoun();
+    generateDrinkName();
     displayResults(); 
   });
   var guest = new Customer("Sam", "", []);
