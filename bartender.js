@@ -192,7 +192,7 @@ $(document).ready(function() {
   displayQuestion();
   console.log(Bob.name);
   Bob.whoIs();
-
+  Bob.greetCustomer();
 
   //TODO: 
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
