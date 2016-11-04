@@ -117,7 +117,7 @@ $(document).ready(function() {
   console.log(pantry);
 
   //adj and nouns for drink names to be randomly selected
-  var drinkAdjectives = ["port", "blimey", "clap of thunder", "dead man", "shark bait", "sea legs", "yellow jack", "sink me"];
+  var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
   var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
 
   //empty array for user order, preferences and drink name for customer to build order 
