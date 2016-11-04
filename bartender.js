@@ -187,6 +187,7 @@ $(document).ready(function() {
     }
     var name = generateDrinkName();
     displayResults(name, userOrderIngred); 
+    return; 
   });
   var guest = new Customer("Sam", "", []);
   displayQuestion();
