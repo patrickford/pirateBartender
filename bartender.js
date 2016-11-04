@@ -186,16 +186,23 @@ $(document).ready(function() {
       console.log(userOrderIngred);
     }
     var name = generateDrinkName();
-    displayResults(name, userOrderIngred); 
-    return; 
+    displayResults(name, userOrderIngred);
+    $("#orderOptions").hide();
+    $("#startOver").show(); 
+    //hide submit, show new drink button   
   });
+
   var guest = new Customer("Sam", "", []);
-  displayQuestion();
+  $("#startOver").hide();
   console.log(Bob.name);
   Bob.whoIs();
   Bob.greetCustomer();
+  displayQuestion();
 
   //TODO: 
+  //fix title
+  //need to push drink name to object 
+  //elminate userOrder
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
 });  
