@@ -44,16 +44,6 @@ $(document).ready(function() {
     this.preferences = preferences;
   };
 
-  //function to add customer to customer array  
-  Customer.prototype.addCustomer = function (customer) {
-    if (this.contents[customers.name]) {
-      this.contents[customers.name].push(customerName)
-    }
-    else {
-      this.contents[customerName] = [customers.name];
-    }
-  }
-
   //worker constructor 
   var Worker = function (name) {
     this.name = name; 
