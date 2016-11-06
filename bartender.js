@@ -191,7 +191,7 @@ $(document).ready(function() {
   });
 
   //on page load hide redo button and form
-  var guest = new Customer("Sam", "", [], []);//
+  var guest = new Customer("Sam", "", [], []);//do not hardwire customer, TODO:need to make this from input
   $("#startOver").hide();
   $("#orderOptions").hide();  
   Bob.whoIs();
@@ -214,7 +214,6 @@ $(document).ready(function() {
     $("#orderOptions").empty();
     $("#startOver").hide(); 
     $("#intro").show(); 
-    console.log("click"); 
   })
 
   //TODO: 
