@@ -19,6 +19,7 @@ $(document).ready(function() {
     this.contents = {}; 
   };
 
+  //function to add ingredients to pantry  
   Pantry.prototype.addIngredient = function (ingredient) {
     if (this.contents[ingredient.type]) {
       this.contents[ingredient.type].push(ingredient.name)
@@ -28,6 +29,7 @@ $(document).ready(function() {
     }
   }
 
+  //function to get random ingredients from pantry for drink 
   Pantry.prototype.getIngredient = function (type) {
     if (this.contents[type]) {
       var index = generateRandomNumber(this.contents[type].length); 
@@ -48,11 +50,13 @@ $(document).ready(function() {
     this.customers = {};
   };
 
+  //function for worker to introduce themselves 
   Worker.prototype.whoIs = function () {
     var introduction = "<h3>People call me " + this.name + " </h3><p>I'll be your bartender tonight.</p>";
     $("#intro").append(introduction);
   };
 
+  //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function () {
     var name = $("#name").val(); 
     console.log(name); 
@@ -67,6 +71,7 @@ $(document).ready(function() {
     }
   };
 
+  //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
       this.customers[customer.name] = customer;
   };
@@ -77,12 +82,15 @@ $(document).ready(function() {
     this.questions = []; 
   };
 
+  //create bartender position
   Bartender.prototype = Object.create(Worker.prototype);
   Bartender.prototype.constructor = Bartender; 
 
   //create new pantry and bartender   
   var pantry = new Pantry(); 
   var Bob = new Bartender("Bob");
+
+  //<----build objects--->
   
   //building question object array  
   Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
@@ -91,31 +99,30 @@ $(document).ready(function() {
   Bob.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
   Bob.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
-  //building ingredients into pantry object<--strong ingredients--> 
+  //ingredients into pantry object<--strong ingredients--> 
   pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
   pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
   pantry.addIngredient(new Ingredient ("splash of gin", "strong"));
 
-  //building ingredients into pantry object<--salty ingredients--> 
+  //ingredients into pantry object<--salty ingredients--> 
   pantry.addIngredient(new Ingredient ("olive on a stick", "salty"));
   pantry.addIngredient(new Ingredient ("salt-dusted rim", "salty"));
   pantry.addIngredient(new Ingredient ("rasher of bacon", "salty"));
 
-  //building ingredients into pantry object<--bitter ingredients--> 
+  //ingredients into pantry object<--bitter ingredients--> 
   pantry.addIngredient(new Ingredient ("shake of bitters", "bitter"));
   pantry.addIngredient(new Ingredient ("splash of tonic", "bitter"));
   pantry.addIngredient(new Ingredient ("twist of lemon peel", "bitter"));
 
-  //building ingredients into pantry object<--sweet ingredients--> 
+  //ingredients into pantry object<--sweet ingredients--> 
   pantry.addIngredient(new Ingredient ("sugar cube", "sweet"));
   pantry.addIngredient(new Ingredient ("spoonful of honey", "sweet"));
   pantry.addIngredient(new Ingredient ("splash of cola", "sweet"));
 
-  //building ingredients into pantry object<--fruity ingredients--> 
+  //ingredients into pantry object<--fruity ingredients--> 
   pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
   pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
-  console.log(pantry);
 
   //adj and nouns for drink names to be randomly selected
   var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
@@ -125,10 +132,10 @@ $(document).ready(function() {
   var userOrder = [];
   var userOrderIngred = [];
 
-  //set global count for display function and click event
+  //set global count for display function
   var count = 0; 
 
-  //function to generate random number to pull randomly from ingredients array 
+  //function to generate random number to pull from ingredients array 
   function generateRandomNumber (max) {
     //math.floor ensure integer is rounded down 
     return Math.floor(Math.random() * max);  
