@@ -50,12 +50,13 @@ $(document).ready(function() {
   };
 
   Worker.prototype.whoIs = function () {
-    var introduction = "<h2>My name is " + this.name + " </h2>";
+    var introduction = "<h3>People call me " + this.name + " </h3><p>I'll be your bartender tonight.</p>";
     $("#intro").append(introduction);
   };
 
   Worker.prototype.greetCustomer = function () {
-    var name = prompt("Ahoy, matey what is your name?"); 
+    var name = $("#name").val(); 
+    console.log(name); 
     if (this.customers[name]) {
       customers.find(name)
       var greeting = "<h2>" + name + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
@@ -195,7 +196,7 @@ $(document).ready(function() {
 
   var guest = new Customer("Sam", "", []);
   $("#startOver").hide();
-  $("#intro").hide(); 
+  $("#orderOptions").hide(); 
   console.log(Bob.name);
   Bob.whoIs();
   Bob.greetCustomer();
