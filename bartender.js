@@ -38,10 +38,11 @@ $(document).ready(function() {
   };
 
   //remember order constructor 
-  var Customer = function (name, drink, preferences) {
+  var Customer = function (name, drink, preferences, prefIngredients) {
     this.name = name; 
     this.drink = drink; 
     this.preferences = preferences;
+    this.ingredients = prefIngredients; 
   };
 
   //worker constructor 
@@ -166,7 +167,7 @@ $(document).ready(function() {
     $("#results").append("<h5>" + ingredients + "</h5>");
   };
 
-  //once user answers question, type of drink is put into preferences array 
+  //once user answers question, their choices are put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
       guest.preferences.push(Bob.questions[count].type);
@@ -179,26 +180,27 @@ $(document).ready(function() {
   });
 
   //grab preferences and randomly get ingredient from pantry from each type of preference
-  //display results for user of their drink 
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
       pantry.getIngredient(guest.preferences[i]);
-      Customer.preferences.push(pantry.getIngredient(guest.preferences[i]));
+      guest.prefIngredients.push(pantry.getIngredient(guest.preferences[i]));//TODO: fix bug
     }
-    var name = generateDrinkName();
-    displayResults(name, userOrderIngred);
+    //display results for user of their drink 
+    var drinkName = generateDrinkName();
+    displayResults(drinkName, guest.prefIngredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
   });
 
-  var guest = new Customer("Sam", "", []);
+  //on page load hide redo button and form
+  var guest = new Customer("Sam", "", [], []);
   $("#startOver").hide();
   $("#orderOptions").hide();  
   Bob.whoIs();
 
   //ask customer name to save in object array once drink is built
-  $("#custName").submit(function (e){
+  $("#custName").submit(function (e) {
     e.preventDefault(); 
     Bob.greetCustomer();
     //reset input field 
