@@ -58,11 +58,11 @@ $(document).ready(function() {
 
   //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function () {
-    var name = $("#name").val(); 
-    console.log(name); 
-    if (this.customers[name]) {
-      customers.find(name)
-      var greeting = "<h2>" + name + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
+    var CustomerName = $("#name").val(); 
+    console.log(CustomerName); 
+    if (this.customers[CustomerName]) {
+      customers.find(CustomerName)
+      var greeting = "<h2>" + CustomerName + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
         preferences + "</h5>";
       $("#results").append(greeting);
     }
@@ -209,6 +209,12 @@ $(document).ready(function() {
     $("#custName")[0].reset();
     $("#intro").hide();
     $("#orderOptions").show();
+  })
+
+  //listener event to start over 
+  $(document).on("click", "#startOver", function () {
+    $("#orderOptions").val(""); 
+    console.log("click"); 
   })
 
   //TODO: 
