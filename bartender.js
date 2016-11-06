@@ -42,7 +42,9 @@ $(document).ready(function() {
     this.name = name; 
     this.drink = drink; 
     this.preferences = preferences;
-  };//work in progress 
+  };
+
+  //make prototype for add customer like pantry
 
   //worker constructor 
   var Worker = function (name) {
@@ -128,10 +130,6 @@ $(document).ready(function() {
   var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
   var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
 
-  //empty array for user order, preferences and drink name for customer to build order 
-  var userOrder = [];
-  var userOrderIngred = [];
-
   //set global count for display function
   var count = 0; 
 
@@ -188,7 +186,7 @@ $(document).ready(function() {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
       pantry.getIngredient(guest.preferences[i]);
-      userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
+      Customer.preferences.push(pantry.getIngredient(guest.preferences[i]));
     }
     var name = generateDrinkName();
     displayResults(name, userOrderIngred);
@@ -219,7 +217,6 @@ $(document).ready(function() {
 
   //TODO: 
   //need to push drink name to object 
-  //elminate userOrder
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
 });  
