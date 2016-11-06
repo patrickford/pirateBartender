@@ -50,7 +50,8 @@ $(document).ready(function() {
   };
 
   Worker.prototype.whoIs = function () {
-    alert("My name is " + this.name);
+    var introduction = "<h2>My name is " + this.name + " </h2>";
+    $("#intro").append(introduction);
   };
 
   Worker.prototype.greetCustomer = function () {
@@ -194,6 +195,7 @@ $(document).ready(function() {
 
   var guest = new Customer("Sam", "", []);
   $("#startOver").hide();
+  $("#intro").hide(); 
   console.log(Bob.name);
   Bob.whoIs();
   Bob.greetCustomer();
