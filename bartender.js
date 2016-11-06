@@ -179,7 +179,6 @@ $(document).ready(function() {
      // $("#results").text("Here is your glass of water, landsman.")
     //}//TODO: work in progress--wrong spot for water-->
     count++;
-    console.log(guest.preferences);
     displayQuestion(); 
   });
 
@@ -187,11 +186,9 @@ $(document).ready(function() {
   //display results for user of their drink 
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
-    console.log("Preferences = ", guest.preferences)
     for (var i = 0; i < guest.preferences.length; i++) {
       pantry.getIngredient(guest.preferences[i]);
       userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
-      console.log(userOrderIngred);
     }
     var name = generateDrinkName();
     displayResults(name, userOrderIngred);
@@ -202,7 +199,6 @@ $(document).ready(function() {
   var guest = new Customer("Sam", "", []);
   $("#startOver").hide();
   $("#orderOptions").hide();  
-  console.log(Bob.name);
   Bob.whoIs();
 
   //ask customer name to save in object array once drink is built
@@ -211,6 +207,8 @@ $(document).ready(function() {
     Bob.greetCustomer();
     //reset input field 
     $("#custName")[0].reset();
+    $("#intro").hide();
+    $("#orderOptions").show();
   })
 
   //TODO: 
