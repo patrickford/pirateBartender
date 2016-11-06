@@ -58,11 +58,9 @@ $(document).ready(function() {
   };
 
   //function for testing if customer is a regular
-  Worker.prototype.greetCustomer = function () {
-    var customerName = $("#name").val(); 
+  Worker.prototype.greetCustomer = function (customerName) {
     console.log(customerName); 
     if (this.customers[customerName]) {
-      customers.find(customerName)
       var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
         preferences + "</h5>";
       $("#results").append(greeting);
@@ -183,18 +181,17 @@ $(document).ready(function() {
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
-      pantry.getIngredient(guest.preferences[i]);
-      guest.prefIngredients.push(pantry.getIngredient(guest.preferences[i]));//TODO: fix bug
+      guest.ingredients.push(pantry.getIngredient(guest.preferences[i]));
     }
     //display results for user of their drink 
     var drinkName = generateDrinkName();
-    displayResults(drinkName, guest.prefIngredients);
+    displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
   });
 
   //on page load hide redo button and form
-  var guest = new Customer("Sam", "", [], []);
+  var guest = new Customer("Sam", "", [], []);//
   $("#startOver").hide();
   $("#orderOptions").hide();  
   Bob.whoIs();
@@ -202,7 +199,8 @@ $(document).ready(function() {
   //ask customer name to save in object array once drink is built
   $("#custName").submit(function (e) {
     e.preventDefault(); 
-    Bob.greetCustomer();
+    var customerName = $("#name").val(); 
+    Bob.greetCustomer(customerName);
     //reset input field 
     $("#custName")[0].reset();
     $("#intro").hide();
@@ -211,7 +209,11 @@ $(document).ready(function() {
 
   //listener event to start over 
   $(document).on("click", "#startOver", function () {
-    $("#orderOptions").val(""); 
+    $("#preferences").empty();
+    $("#results").empty();
+    $("#orderOptions").empty();
+    $("#startOver").hide(); 
+    $("#intro").show(); 
     console.log("click"); 
   })
 
