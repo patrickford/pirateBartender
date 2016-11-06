@@ -27,7 +27,6 @@ $(document).ready(function() {
       this.contents[ingredient.type] = [ingredient.name];
     }
   }
-  console.log(pantry);
 
   Pantry.prototype.getIngredient = function (type) {
     if (this.contents[type]) {
@@ -190,20 +189,24 @@ $(document).ready(function() {
     var name = generateDrinkName();
     displayResults(name, userOrderIngred);
     $("#orderOptions").hide();
-    $("#startOver").show(); 
-    //hide submit, show new drink button   
+    $("#startOver").show();   
   });
 
   var guest = new Customer("Sam", "", []);
   $("#startOver").hide();
-  $("#orderOptions").hide(); 
+  $("#orderOptions").hide();  
   console.log(Bob.name);
   Bob.whoIs();
-  Bob.greetCustomer();
-  displayQuestion();
+
+  //ask customer name to save in object array once drink is built
+  $("#custName").submit(function (e){
+    e.preventDefault(); 
+    Bob.greetCustomer();
+    //reset input field 
+    $("#custName")[0].reset();
+  })
 
   //TODO: 
-  //fix title
   //need to push drink name to object 
   //elminate userOrder
   //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
