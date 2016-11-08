@@ -173,6 +173,7 @@ $(document).ready(function() {
     }
     count++;
     displayQuestion(); 
+    console.log(guest);
   });
 
   //grab preferences and randomly get ingredient from pantry from each type of preference
@@ -206,6 +207,7 @@ $(document).ready(function() {
     $("#custName")[0].reset();
     $("#intro").hide();
     $("#orderOptions").show();
+    console.log(guest);
   })
 
   //listener event to start over 
@@ -216,7 +218,6 @@ $(document).ready(function() {
     $("#startOver").hide(); 
     $("#intro").show(); 
   })
-  console.log(guest);
   //TODO: 
   //need to push drink name to object 
   //greet customer and remember customer
