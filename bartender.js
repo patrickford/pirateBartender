@@ -188,9 +188,10 @@ $(document).ready(function() {
   });
 
   //on page load hide redo button and form
-  var guest = new Customer("Sam", "", [], []);//do not hardwire customer, TODO:need to make this from input
+  var guest = new Customer("", "", [], []);
   $("#startOver").hide();
-  $("#orderOptions").hide();  
+  $("#orderOptions").hide(); 
+  //show bartender name  
   Bob.whoIs();
 
   //ask customer name to save in object array once drink is built
