@@ -61,14 +61,14 @@ $(document).ready(function() {
   Worker.prototype.greetCustomer = function (customerName) {
     console.log(customerName); 
     if (this.customers[customerName]) {
-      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
-        preferences + "</h5>";
+      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + customers.drink + "</h3><br><h5>" + 
+        customers.ingredients + "</h5>";
       $("#results").append(greeting);
     }
     else {  
       displayQuestion();
     }
-  };
+  };//not functional fully 
 
   //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
@@ -170,9 +170,6 @@ $(document).ready(function() {
     if ($("#userpref").val() === "yes") {
       guest.preferences.push(Bob.questions[count].type);
     }
-    //if (guest.preferences === []) {
-     // $("#results").text("Here is your glass of water, landsman.")
-    //}//TODO: work in progress--wrong spot for water-->
     count++;
     displayQuestion(); 
   });
