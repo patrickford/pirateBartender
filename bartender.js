@@ -59,7 +59,6 @@ $(document).ready(function() {
 
   //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function (customerName) {
-    console.log(customerName); 
     if (this.customers[customerName]) {
       var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + customers.drink + "</h3><br><h5>" + 
         customers.ingredients + "</h5>";
@@ -156,6 +155,7 @@ $(document).ready(function() {
       var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
       var nounIndex = generateRandomNumber(drinkNouns.length);
       var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
+      guest.drink = drinkName; 
       return drinkName; 
   };
 
@@ -169,6 +169,7 @@ $(document).ready(function() {
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
       guest.preferences.push(Bob.questions[count].type);
+      console.log(guest.preferences);
     }
     count++;
     displayQuestion(); 
@@ -179,6 +180,7 @@ $(document).ready(function() {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
       guest.ingredients.push(pantry.getIngredient(guest.preferences[i]));
+      console.log(guest.ingredients);
     }
     //display results for user of their drink 
     var drinkName = generateDrinkName();
@@ -197,7 +199,8 @@ $(document).ready(function() {
   //ask customer name to save in object array once drink is built
   $("#custName").submit(function (e) {
     e.preventDefault(); 
-    var customerName = $("#name").val(); 
+    var customerName = $("#name").val();
+    guest.name = $("#name").val();
     Bob.greetCustomer(customerName);
     //reset input field 
     $("#custName")[0].reset();
@@ -213,9 +216,8 @@ $(document).ready(function() {
     $("#startOver").hide(); 
     $("#intro").show(); 
   })
-
+  console.log(guest);
   //TODO: 
   //need to push drink name to object 
-  //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
   //greet customer and remember customer
 });  
