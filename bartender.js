@@ -219,6 +219,5 @@ $(document).ready(function() {
     $("#intro").show(); 
   })
   //TODO: 
-  //need to push drink name to object 
-  //greet customer and remember customer
+  //remember customer
 });  
