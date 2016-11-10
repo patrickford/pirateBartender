@@ -120,14 +120,14 @@ $(document).ready(function() {
   
   //create new pantry and bartender   
   var pantry = new Pantry(); 
-  var Bob = new Bartender("Bob");
+  var Esme = new Bartender("Esme");
 
   //building question object   
-  Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
-  Bob.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
-  Bob.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
-  Bob.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
-  Bob.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
+  Esme.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
+  Esme.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
+  Esme.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
+  Esme.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
+  Esme.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
 
   //ingredients into pantry object<--strong ingredients--> 
   pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
@@ -176,7 +176,7 @@ $(document).ready(function() {
     e.preventDefault(); 
     var customerName = $("#name").val();
     guest.name = $("#name").val();
-    Bob.greetCustomer(customerName);
+    Esme.greetCustomer(customerName);
     //reset input field 
     $("#custName")[0].reset();
     $("#intro").hide();
@@ -187,10 +187,10 @@ $(document).ready(function() {
   //once user answers question, their choices are put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
-      guest.preferences.push(Bob.questions[count].type);
+      guest.preferences.push(Esme.questions[count].type);
     }
     count++;
-    Bob.displayQuestion(); 
+    Esme.displayQuestion(); 
     console.log(guest);
   });
 
@@ -202,8 +202,8 @@ $(document).ready(function() {
       console.log(guest.ingredients);
     }
     //display results for user of their drink 
-    var drinkName = Bob.generateDrinkName();
-    Bob.displayResults(drinkName, guest.ingredients);
+    var drinkName = Esme.generateDrinkName();
+    Esme.displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
   });
@@ -222,7 +222,7 @@ $(document).ready(function() {
   $("#startOver").hide();
   $("#orderOptions").hide(); 
   //show bartender name
-  Bob.whoIs();
+  Esme.whoIs();
 
   //TODO: 
   //remember customer
