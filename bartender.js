@@ -27,7 +27,7 @@ $(document).ready(function() {
     else {
       this.contents[ingredient.type] = [ingredient.name];
     }
-  }
+  };
 
   //function to get random ingredients from pantry for drink 
   Pantry.prototype.getIngredient = function (type) {
