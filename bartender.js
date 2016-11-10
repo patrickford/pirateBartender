@@ -89,6 +89,15 @@ $(document).ready(function() {
     }
   };
 
+  //function to get random adjective and noun for drink names 
+  Worker.prototype.generateDrinkName = function () {
+      var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
+      var nounIndex = generateRandomNumber(drinkNouns.length);
+      var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
+      guest.drink = drinkName; 
+      return drinkName; 
+  };
+
   //bartender constructor 
   var Bartender = function (name) {
     Worker.call(this, name);
@@ -150,15 +159,6 @@ $(document).ready(function() {
     return Math.floor(Math.random() * max);  
   };
 
-  //function to get random adjective and noun for drink names 
-  function generateDrinkName () {
-      var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
-      var nounIndex = generateRandomNumber(drinkNouns.length);
-      var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
-      guest.drink = drinkName; 
-      return drinkName; 
-  };
-
   //function to display results to user once drink is created
   function displayResults (drink, ingredients) {
     $("#results").append("<h3>" + drink + "</h3>");
@@ -184,7 +184,7 @@ $(document).ready(function() {
       console.log(guest.ingredients);
     }
     //display results for user of their drink 
-    var drinkName = generateDrinkName();
+    var drinkName = Bob.generateDrinkName();
     displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
@@ -194,7 +194,7 @@ $(document).ready(function() {
   var guest = new Customer("", "", [], []);
   $("#startOver").hide();
   $("#orderOptions").hide(); 
-  //show bartender name  
+  //show bartender name
   Bob.whoIs();
 
   //ask customer name to save in object array once drink is built
