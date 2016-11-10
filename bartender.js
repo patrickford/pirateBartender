@@ -22,7 +22,7 @@ $(document).ready(function() {
   //function to add ingredients to pantry  
   Pantry.prototype.addIngredient = function (ingredient) {
     if (this.contents[ingredient.type]) {
-      this.contents[ingredient.type].push(ingredient.name)
+      this.contents[ingredient.type].push(ingredient.name);
     }
     else {
       this.contents[ingredient.type] = [ingredient.name];
@@ -51,7 +51,7 @@ $(document).ready(function() {
     this.customers = {};
   };
 
-  //function for worker to introduce themselves 
+  //function for worker to make an introduction 
   Worker.prototype.whoIs = function () {
     var introduction = "<h3>People call me " + this.name + " </h3><p>I'll be your bartender tonight.</p>";
     $("#intro").append(introduction);
@@ -82,6 +82,8 @@ $(document).ready(function() {
 
   //create bartender position
   Bartender.prototype = Object.create(Worker.prototype);
+
+  //rename constructor to fit bartender
   Bartender.prototype.constructor = Bartender; 
 
   //function to itierate through questions and display
@@ -114,13 +116,13 @@ $(document).ready(function() {
     $("#results").append("<h5>" + ingredients + "</h5>");
   };
 
+  //<----build objects--->
+  
   //create new pantry and bartender   
   var pantry = new Pantry(); 
   var Bob = new Bartender("Bob");
 
-  //<----build objects--->
-  
-  //building question object array  
+  //building question object   
   Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
   Bob.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
   Bob.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
@@ -154,12 +156,13 @@ $(document).ready(function() {
 
   //adj and nouns for drink names to be randomly selected
   var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
-  var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
-
-  //set global count for display function
-  var count = 0; 
+  var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"]; 
 
   //<--helper function-->
+
+  //set global count for display function
+  var count = 0;
+
   //function to generate random number to pull from ingredients array 
   function generateRandomNumber (max) {
     //math.floor ensure integer is rounded down 
@@ -185,14 +188,13 @@ $(document).ready(function() {
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
       guest.preferences.push(Bob.questions[count].type);
-      console.log(guest.preferences);
     }
     count++;
     Bob.displayQuestion(); 
     console.log(guest);
   });
 
-  //grab preferences and randomly get ingredient from pantry from each type of preference
+  //grab preferences and randomly get ingredient from pantry in each type of preference
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
