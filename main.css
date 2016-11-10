@@ -16,3 +16,19 @@ select {
 #results {
     margin-top: 15px; 
 }
+body {
+    background-image: url("piratebar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#pirateBar {
+    border: 2px solid white; 
+}
+h1, label, h3, h5 {
+    color: white;
+    text-shadow: 2px 2px 2px black; 
+    text-align: center;
+}
+#intro {
+    text-align: center;
+}

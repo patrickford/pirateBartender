@@ -53,7 +53,7 @@ $(document).ready(function() {
 
   //function for worker to make an introduction 
   Worker.prototype.whoIs = function () {
-    var introduction = "<h3>People call me " + this.name + " </h3><p>I'll be your bartender tonight.</p>";
+    var introduction = "<h3>People call me " + this.name + ". I'll be your bartender tonight.</h3>";
     $("#intro").append(introduction);
   };
 
