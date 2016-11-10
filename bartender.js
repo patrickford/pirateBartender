@@ -38,11 +38,11 @@ $(document).ready(function() {
   };
 
   //remember order constructor 
-  var Customer = function (name, drink, preferences, prefIngredients) {
+  var Customer = function (name) {
     this.name = name; 
-    this.drink = drink; 
-    this.preferences = preferences;
-    this.ingredients = prefIngredients; 
+    this.drink = {}; 
+    this.preferences = [];
+    this.ingredients = []; 
   };
 
   //worker constructor 
@@ -60,8 +60,8 @@ $(document).ready(function() {
   //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function (customerName) {
     if (this.customers[customerName]) {
-      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + customers.drink + "</h3><br><h5>" + 
-        customers.ingredients + "</h5>";
+      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + this.customers[customerName].drink + "</h3><br><h5>" + 
+        this.customers[customerName].ingredients + "</h5>";
       $("#results").append(greeting);
     }
     else {  
@@ -162,6 +162,7 @@ $(document).ready(function() {
 
   //set global count for display function
   var count = 0;
+  var guest; 
 
   //function to generate random number to pull from ingredients array 
   function generateRandomNumber (max) {
@@ -175,8 +176,8 @@ $(document).ready(function() {
   $("#custName").submit(function (e) {
     e.preventDefault(); 
     var customerName = $("#name").val();
-    guest.name = $("#name").val();
     Esme.greetCustomer(customerName);
+    guest = new Customer(customerName);
     //reset input field 
     $("#custName")[0].reset();
     $("#intro").hide();
@@ -203,6 +204,7 @@ $(document).ready(function() {
     }
     //display results for user of their drink 
     var drinkName = Esme.generateDrinkName();
+    Esme.addCustomer(guest);
     Esme.displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
@@ -215,10 +217,11 @@ $(document).ready(function() {
     $("#orderOptions").empty();
     $("#startOver").hide(); 
     $("#intro").show(); 
+    guest.preferences = [];
+    guest.ingredients = [];
   });
 
   //on page load hide redo button and form
-  var guest = new Customer("", "", [], []);
   $("#startOver").hide();
   $("#orderOptions").hide(); 
   //show bartender name
