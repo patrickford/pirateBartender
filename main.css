@@ -20,10 +20,12 @@ body {
     background-image: url("piratebar.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    margin: 75px; 
 }
 #pirateBar {
-    border: 2px solid white; 
+    background-color: rgba(12, 4, 4, 0.2);
 }
+
 h1, label, h3, h5 {
     color: white;
     text-shadow: 2px 2px 2px black; 
@@ -31,4 +33,8 @@ h1, label, h3, h5 {
 }
 #intro {
     text-align: center;
+}
+
+label {
+    font-size: 16px; 
 }

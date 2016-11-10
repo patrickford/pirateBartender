@@ -155,7 +155,7 @@ $(document).ready(function() {
   pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
 
   //adj and nouns for drink names to be randomly selected
-  var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
+  var drinkAdjectives = ["Port", "Blimey", "Thunder", "Dead man", "Shark bait", "Sea legs", "Yellow jack"];
   var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"]; 
 
   //<--helper function-->
