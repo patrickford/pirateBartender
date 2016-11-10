@@ -65,13 +65,28 @@ $(document).ready(function() {
       $("#results").append(greeting);
     }
     else {  
-      displayQuestion();
+      Bob.displayQuestion();
     }
   };//not functional fully 
 
   //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
       this.customers[customer.name] = customer;
+  };
+
+  //function to itierate through questions and display
+  Worker.prototype.displayQuestion = function () {
+    $("#preferences").empty(); 
+    if (count < Bob.questions.length) { 
+      var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
+      var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
+      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      $("#preferences").append(displayQuest, answer, nextQuestionbtn);
+    }
+    else {
+      var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
+      $("#orderOptions").append(orderSubmit);
+    }
   };
 
   //bartender constructor 
@@ -135,21 +150,6 @@ $(document).ready(function() {
     return Math.floor(Math.random() * max);  
   };
 
-  //function to itierate through questions and display
-  function displayQuestion () {
-    $("#preferences").empty(); 
-    if (count < Bob.questions.length) { 
-      var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
-      var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
-      $("#preferences").append(displayQuest, answer, nextQuestionbtn);
-    }
-    else {
-      var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
-      $("#orderOptions").append(orderSubmit);
-    }
-  };
-
   //function to get random adjective and noun for drink names 
   function generateDrinkName () {
       var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
@@ -172,7 +172,7 @@ $(document).ready(function() {
       console.log(guest.preferences);
     }
     count++;
-    displayQuestion(); 
+    Bob.displayQuestion(); 
     console.log(guest);
   });
 
