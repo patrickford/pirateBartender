@@ -65,7 +65,7 @@ $(document).ready(function() {
       $("#results").append(greeting);
     }
     else {  
-      Bob.displayQuestion();
+      Esme.displayQuestion();
     }
   }; 
 
@@ -89,8 +89,8 @@ $(document).ready(function() {
   //function to itierate through questions and display
   Bartender.prototype.displayQuestion = function () {
     $("#preferences").empty(); 
-    if (count < Bob.questions.length) { 
-      var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
+    if (count < Esme.questions.length) { 
+      var displayQuest = "<label for='userpref'>" + Esme.questions[count].question + "</label>";
       var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
       var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
       $("#preferences").append(displayQuest, answer, nextQuestionbtn);
