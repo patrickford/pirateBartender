@@ -61,7 +61,7 @@ $(document).ready(function() {
   Worker.prototype.greetCustomer = function (customerName) {
     if (this.customers[customerName]) {
       var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + this.customers[customerName].drink + "</h3><br><h5>" + 
-        this.customers[customerName].ingredients + "</h5>";
+        this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
     }
     else {  
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
   //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
-      this.customers[customer.name] = customer;
+    this.customers[customer.name] = customer;
   };
 
   //bartender constructor 
@@ -113,7 +113,7 @@ $(document).ready(function() {
   //function to display results to user once drink is created
   Bartender.prototype.displayResults = function (drink, ingredients) {
     $("#results").append("<h3>" + drink + "</h3>");
-    $("#results").append("<h5>" + ingredients + "</h5>");
+    $("#results").append("<h5>" + ingredients.join(", ") + "</h5>");
   };
 
   //<----build objects--->
@@ -217,8 +217,6 @@ $(document).ready(function() {
     $("#orderOptions").empty();
     $("#startOver").hide(); 
     $("#intro").show(); 
-    guest.preferences = [];
-    guest.ingredients = [];
   });
 
   //on page load hide redo button and form
@@ -226,7 +224,4 @@ $(document).ready(function() {
   $("#orderOptions").hide(); 
   //show bartender name
   Esme.whoIs();
-
-  //TODO: 
-  //remember customer
 });  
