@@ -67,15 +67,25 @@ $(document).ready(function() {
     else {  
       Bob.displayQuestion();
     }
-  };//not functional fully 
+  }; 
 
   //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
       this.customers[customer.name] = customer;
   };
 
+  //bartender constructor 
+  var Bartender = function (name) {
+    Worker.call(this, name);
+    this.questions = []; 
+  };
+
+  //create bartender position
+  Bartender.prototype = Object.create(Worker.prototype);
+  Bartender.prototype.constructor = Bartender; 
+
   //function to itierate through questions and display
-  Worker.prototype.displayQuestion = function () {
+  Bartender.prototype.displayQuestion = function () {
     $("#preferences").empty(); 
     if (count < Bob.questions.length) { 
       var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
@@ -90,7 +100,7 @@ $(document).ready(function() {
   };
 
   //function to get random adjective and noun for drink names 
-  Worker.prototype.generateDrinkName = function () {
+  Bartender.prototype.generateDrinkName = function () {
       var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
       var nounIndex = generateRandomNumber(drinkNouns.length);
       var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
@@ -98,15 +108,11 @@ $(document).ready(function() {
       return drinkName; 
   };
 
-  //bartender constructor 
-  var Bartender = function (name) {
-    Worker.call(this, name);
-    this.questions = []; 
+  //function to display results to user once drink is created
+  Bartender.prototype.displayResults = function (drink, ingredients) {
+    $("#results").append("<h3>" + drink + "</h3>");
+    $("#results").append("<h5>" + ingredients + "</h5>");
   };
-
-  //create bartender position
-  Bartender.prototype = Object.create(Worker.prototype);
-  Bartender.prototype.constructor = Bartender; 
 
   //create new pantry and bartender   
   var pantry = new Pantry(); 
@@ -153,17 +159,27 @@ $(document).ready(function() {
   //set global count for display function
   var count = 0; 
 
+  //<--helper function-->
   //function to generate random number to pull from ingredients array 
   function generateRandomNumber (max) {
     //math.floor ensure integer is rounded down 
     return Math.floor(Math.random() * max);  
   };
 
-  //function to display results to user once drink is created
-  function displayResults (drink, ingredients) {
-    $("#results").append("<h3>" + drink + "</h3>");
-    $("#results").append("<h5>" + ingredients + "</h5>");
-  };
+  //<---listener events--->
+
+  //ask customer name to save in object array once drink is built
+  $("#custName").submit(function (e) {
+    e.preventDefault(); 
+    var customerName = $("#name").val();
+    guest.name = $("#name").val();
+    Bob.greetCustomer(customerName);
+    //reset input field 
+    $("#custName")[0].reset();
+    $("#intro").hide();
+    $("#orderOptions").show();
+    console.log(guest);
+  });
 
   //once user answers question, their choices are put into preferences array 
   $(document).on("click", "#nextQuest", function () {
@@ -185,9 +201,18 @@ $(document).ready(function() {
     }
     //display results for user of their drink 
     var drinkName = Bob.generateDrinkName();
-    displayResults(drinkName, guest.ingredients);
+    Bob.displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
     $("#startOver").show();   
+  });
+
+  //user choice to start over 
+  $(document).on("click", "#startOver", function () {
+    $("#preferences").empty();
+    $("#results").empty();
+    $("#orderOptions").empty();
+    $("#startOver").hide(); 
+    $("#intro").show(); 
   });
 
   //on page load hide redo button and form
@@ -197,27 +222,6 @@ $(document).ready(function() {
   //show bartender name
   Bob.whoIs();
 
-  //ask customer name to save in object array once drink is built
-  $("#custName").submit(function (e) {
-    e.preventDefault(); 
-    var customerName = $("#name").val();
-    guest.name = $("#name").val();
-    Bob.greetCustomer(customerName);
-    //reset input field 
-    $("#custName")[0].reset();
-    $("#intro").hide();
-    $("#orderOptions").show();
-    console.log(guest);
-  })
-
-  //listener event to start over 
-  $(document).on("click", "#startOver", function () {
-    $("#preferences").empty();
-    $("#results").empty();
-    $("#orderOptions").empty();
-    $("#startOver").hide(); 
-    $("#intro").show(); 
-  })
   //TODO: 
   //remember customer
 });  
