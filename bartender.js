@@ -92,7 +92,7 @@ $(document).ready(function() {
     if (count < Esme.questions.length) { 
       var displayQuest = "<label for='userpref'>" + Esme.questions[count].question + "</label>";
       var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-info'>Ask me the next question, bartender!</button>";
       $("#preferences").append(displayQuest, answer, nextQuestionbtn);
     }
     else {
@@ -161,6 +161,7 @@ $(document).ready(function() {
   //<--helper function-->
 
   //set global count for display function
+  //set global guest for future functions 
   var count = 0;
   var guest; 
 
@@ -182,7 +183,6 @@ $(document).ready(function() {
     $("#custName")[0].reset();
     $("#intro").hide();
     $("#orderOptions").show();
-    console.log(guest);
   });
 
   //once user answers question, their choices are put into preferences array 
@@ -192,7 +192,6 @@ $(document).ready(function() {
     }
     count++;
     Esme.displayQuestion(); 
-    console.log(guest);
   });
 
   //grab preferences and randomly get ingredient from pantry in each type of preference
@@ -200,7 +199,6 @@ $(document).ready(function() {
     e.preventDefault(); 
     for (var i = 0; i < guest.preferences.length; i++) {
       guest.ingredients.push(pantry.getIngredient(guest.preferences[i]));
-      console.log(guest.ingredients);
     }
     //display results for user of their drink 
     var drinkName = Esme.generateDrinkName();

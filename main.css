@@ -39,3 +39,7 @@ h1, label, h3, h5 {
 label {
     font-size: 16px; 
 }
+
+#startOver {
+    text-align: center; 
+}
