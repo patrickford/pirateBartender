@@ -60,7 +60,7 @@ $(document).ready(function() {
   //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function (customerName) {
     if (this.customers[customerName]) {
-      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + this.customers[customerName].drink + "</h3><br><h5>" + 
+      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + this.customers[customerName].drink + ".</h3><br><h5>" + 
         this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
     }
