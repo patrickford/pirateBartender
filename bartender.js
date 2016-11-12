@@ -90,12 +90,10 @@ $(document).ready(function() {
   Bartender.prototype.displayQuestion = function () {
     $("#preferences").empty(); 
     if (count < Esme.questions.length) {
-      var guestName = $("#name").val();
-      var sayHi = "<h2>Nice to meet you " + guestName + ".</h2><h4>Answer me this.</h4>"
       var displayQuest = "<label for='userpref'>" + Esme.questions[count].question + "</label>";
       var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
       var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-info'>Ask me the next question, bartender!</button>";
-      $("#preferences").append(sayHi, displayQuest, answer, nextQuestionbtn);
+      $("#preferences").append(displayQuest, answer, nextQuestionbtn);
     }
     else {
       var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
@@ -181,6 +179,9 @@ $(document).ready(function() {
     var customerName = $("#name").val();
     Esme.greetCustomer(customerName);
     guest = new Customer(customerName);
+    var sayHi = "<h2>Nice to meet you " + customerName + 
+      ".</h2><h4>Answer me this.</h4>"
+    $("#preferences").append(sayHi);
     //reset input field 
     $("#custName")[0].reset();
     $("#intro").hide();
