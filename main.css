@@ -27,7 +27,7 @@ body {
     background-color: rgba(12, 4, 4, 0.2);
 }
 
-h1, h2, h3, h5, label {
+h1, h2, h3, h4, h5, label {
     color: white;
     text-shadow: 2px 2px 2px black; 
     text-align: center;
