@@ -64,7 +64,7 @@ $(document).ready(function() {
         this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
     }
-    else {  
+    else {
       var sayHi = "<h2>Great to meet ye " + customerName + ".</h2><h4>Answer me this.</h4>"
       $("#sayHi").append(sayHi);
       Esme.displayQuestion();
