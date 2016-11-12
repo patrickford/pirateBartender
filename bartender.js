@@ -53,18 +53,20 @@ $(document).ready(function() {
 
   //function for worker to make an introduction 
   Worker.prototype.whoIs = function () {
-    var introduction = "<h3>People call me " + this.name + ". I'll be your bartender tonight.</h3>";
+    var introduction = "<h3>People call me " + this.name + ". I'll be ye bartender t'night.</h3>";
     $("#intro").append(introduction);
   };
 
   //function for testing if customer is a regular
   Worker.prototype.greetCustomer = function (customerName) {
     if (this.customers[customerName]) {
-      var greeting = "<h2>" + customerName + " welcome back!</h2><h3>Here is your " + this.customers[customerName].drink + ".</h3><br><h5>" + 
+      var greeting = "<h2>" + customerName + " welcome back matey!</h2><h3>Here is your " + this.customers[customerName].drink + ".</h3><br><h5>" + 
         this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
     }
     else {  
+      var sayHi = "<h2>Great to meet ye " + customerName + ".</h2><h4>Answer me this.</h4>"
+      $("#sayHi").append(sayHi);
       Esme.displayQuestion();
     }
   }; 
@@ -88,7 +90,7 @@ $(document).ready(function() {
 
   //function to itierate through questions and display
   Bartender.prototype.displayQuestion = function () {
-    $("#preferences").empty(); 
+    $("#preferences").empty();
     if (count < Esme.questions.length) {
       var displayQuest = "<label for='userpref'>" + Esme.questions[count].question + "</label>";
       var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
@@ -96,6 +98,7 @@ $(document).ready(function() {
       $("#preferences").append(displayQuest, answer, nextQuestionbtn);
     }
     else {
+      $("#sayHi").empty();
       var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
       $("#orderOptions").append(orderSubmit);
     }
@@ -179,9 +182,6 @@ $(document).ready(function() {
     var customerName = $("#name").val();
     Esme.greetCustomer(customerName);
     guest = new Customer(customerName);
-    var sayHi = "<h2>Nice to meet you " + customerName + 
-      ".</h2><h4>Answer me this.</h4>"
-    $("#preferences").append(sayHi);
     //reset input field 
     $("#custName")[0].reset();
     $("#intro").hide();
