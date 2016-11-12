@@ -19,16 +19,17 @@ $(document).ready(function() {
     this.contents = {}; 
   };
 
+  //function to add ingredients to pantry  
   Pantry.prototype.addIngredient = function (ingredient) {
     if (this.contents[ingredient.type]) {
-      this.contents[ingredient.type].push(ingredient.name)
+      this.contents[ingredient.type].push(ingredient.name);
     }
     else {
       this.contents[ingredient.type] = [ingredient.name];
     }
-  }
-  console.log(pantry);
+  };
 
+  //function to get random ingredients from pantry for drink 
   Pantry.prototype.getIngredient = function (type) {
     if (this.contents[type]) {
       var index = generateRandomNumber(this.contents[type].length); 
@@ -37,11 +38,12 @@ $(document).ready(function() {
   };
 
   //remember order constructor 
-  var Customer = function (name, drink, preferences) {
+  var Customer = function (name) {
     this.name = name; 
-    this.drink = drink; 
-    this.preferences = preferences;
-  };//work in progress 
+    this.drink = {}; 
+    this.preferences = [];
+    this.ingredients = []; 
+  };
 
   //worker constructor 
   var Worker = function (name) {
@@ -49,26 +51,29 @@ $(document).ready(function() {
     this.customers = {};
   };
 
+  //function for worker to make an introduction 
   Worker.prototype.whoIs = function () {
-    var introduction = "<h2>My name is " + this.name + " </h2>";
+    var introduction = "<h3>People call me " + this.name + ". I'll be ye bartender t'night.</h3>";
     $("#intro").append(introduction);
   };
 
-  Worker.prototype.greetCustomer = function () {
-    var name = prompt("Ahoy, matey what is your name?"); 
-    if (this.customers[name]) {
-      customers.find(name)
-      var greeting = "<h2>" + name + " welcome back!</h2><h3>Here is your " + userOrder + "</h3><br><h5>" + 
-        preferences + "</h5>";
+  //function for testing if customer is a regular
+  Worker.prototype.greetCustomer = function (customerName) {
+    if (this.customers[customerName]) {
+      var greeting = "<h2>" + customerName + " welcome back matey!</h2><h3>Here is your " + this.customers[customerName].drink + ".</h3><br><h5>" + 
+        this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
     }
     else {  
-      displayQuestion();
+      var sayHi = "<h2>Great to meet ye " + customerName + ".</h2><h4>Answer me this.</h4>"
+      $("#sayHi").append(sayHi);
+      Esme.displayQuestion();
     }
-  };
+  }; 
 
+  //function to add new customer
   Worker.prototype.addCustomer = function (customer) {
-      this.customers[customer.name] = customer;
+    this.customers[customer.name] = customer;
   };
 
   //bartender constructor 
@@ -77,134 +82,147 @@ $(document).ready(function() {
     this.questions = []; 
   };
 
+  //create bartender position
   Bartender.prototype = Object.create(Worker.prototype);
+
+  //rename constructor to fit bartender
   Bartender.prototype.constructor = Bartender; 
 
-  //create new pantry and bartender   
-  var pantry = new Pantry(); 
-  var Bob = new Bartender("Bob");
-  
-  //building question object array  
-  Bob.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
-  Bob.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
-  Bob.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
-  Bob.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
-  Bob.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
-
-  //building ingredients into pantry object<--strong ingredients--> 
-  pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
-  pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
-  pantry.addIngredient(new Ingredient ("splash of gin", "strong"));
-
-  //building ingredients into pantry object<--salty ingredients--> 
-  pantry.addIngredient(new Ingredient ("olive on a stick", "salty"));
-  pantry.addIngredient(new Ingredient ("salt-dusted rim", "salty"));
-  pantry.addIngredient(new Ingredient ("rasher of bacon", "salty"));
-
-  //building ingredients into pantry object<--bitter ingredients--> 
-  pantry.addIngredient(new Ingredient ("shake of bitters", "bitter"));
-  pantry.addIngredient(new Ingredient ("splash of tonic", "bitter"));
-  pantry.addIngredient(new Ingredient ("twist of lemon peel", "bitter"));
-
-  //building ingredients into pantry object<--sweet ingredients--> 
-  pantry.addIngredient(new Ingredient ("sugar cube", "sweet"));
-  pantry.addIngredient(new Ingredient ("spoonful of honey", "sweet"));
-  pantry.addIngredient(new Ingredient ("splash of cola", "sweet"));
-
-  //building ingredients into pantry object<--fruity ingredients--> 
-  pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
-  pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
-  pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
-  console.log(pantry);
-
-  //adj and nouns for drink names to be randomly selected
-  var drinkAdjectives = ["port", "blimey", "thunder", "dead man", "shark bait", "sea legs", "yellow jack"];
-  var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"];
-
-  //empty array for user order, preferences and drink name for customer to build order 
-  var userOrder = [];
-  var userOrderIngred = [];
-
-  //set global count for display function and click event
-  var count = 0; 
-
-  //function to generate random number to pull randomly from ingredients array 
-  function generateRandomNumber (max) {
-    //math.floor ensure integer is rounded down 
-    return Math.floor(Math.random() * max);  
-  };
-
   //function to itierate through questions and display
-  function displayQuestion () {
-    $("#preferences").empty(); 
-    if (count < Bob.questions.length) { 
-      var displayQuest = "<label for='userpref'>" + Bob.questions[count].question + "</label>";
+  Bartender.prototype.displayQuestion = function () {
+    $("#preferences").empty();
+    if (count < Esme.questions.length) {
+      var displayQuest = "<label for='userpref'>" + Esme.questions[count].question + "</label>";
       var answer = "<select id='userpref'><option value='yes'>Aye!</option><option value='no'>Nay</option></select>";
-      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-success'>Ask me the next question, bartender!</button>";
+      var nextQuestionbtn = "<br><button id='nextQuest' type='button' class='btn btn-info'>Ask me the next question, bartender!</button>";
       $("#preferences").append(displayQuest, answer, nextQuestionbtn);
     }
     else {
+      $("#sayHi").empty();
       var orderSubmit = "<button type='submit' class='btn btn-danger' id='orderSubmit'>Let's take a gander at yer drink!</button>";
       $("#orderOptions").append(orderSubmit);
     }
   };
 
   //function to get random adjective and noun for drink names 
-  function generateDrinkName () {
+  Bartender.prototype.generateDrinkName = function () {
       var adjectiveIndex = generateRandomNumber(drinkAdjectives.length);
       var nounIndex = generateRandomNumber(drinkNouns.length);
       var drinkName = drinkAdjectives[adjectiveIndex] + " " + drinkNouns[nounIndex];
+      guest.drink = drinkName; 
       return drinkName; 
   };
 
   //function to display results to user once drink is created
-  function displayResults (drink, ingredients) {
+  Bartender.prototype.displayResults = function (drink, ingredients) {
     $("#results").append("<h3>" + drink + "</h3>");
-    $("#results").append("<h5>" + ingredients + "</h5>");
+    $("#results").append("<h5>" + ingredients.join(", ") + "</h5>");
   };
 
-  //once user answers question, type of drink is put into preferences array 
+  //<----build objects--->
+  
+  //create new pantry and bartender   
+  var pantry = new Pantry(); 
+  var Esme = new Bartender("Esme");
+
+  //building question object   
+  Esme.questions.push(new Question ("Do ye like yer drinks strong?", "strong"));
+  Esme.questions.push(new Question ("Do ye like it with a salty tang?", "salty"));
+  Esme.questions.push(new Question ("Are ye a lubber who likes it bitter?", "bitter"));
+  Esme.questions.push(new Question ("Would ye like a bit of sweetness with yer poision?", "sweet"));
+  Esme.questions.push(new Question ("Are ye one for a fruity finish?", "fruity"));
+
+  //ingredients into pantry object<--strong ingredients--> 
+  pantry.addIngredient(new Ingredient ("glum of rum", "strong"));
+  pantry.addIngredient(new Ingredient ("slug of whisky", "strong"));
+  pantry.addIngredient(new Ingredient ("splash of gin", "strong"));
+
+  //ingredients into pantry object<--salty ingredients--> 
+  pantry.addIngredient(new Ingredient ("olive on a stick", "salty"));
+  pantry.addIngredient(new Ingredient ("salt-dusted rim", "salty"));
+  pantry.addIngredient(new Ingredient ("rasher of bacon", "salty"));
+
+  //ingredients into pantry object<--bitter ingredients--> 
+  pantry.addIngredient(new Ingredient ("shake of bitters", "bitter"));
+  pantry.addIngredient(new Ingredient ("splash of tonic", "bitter"));
+  pantry.addIngredient(new Ingredient ("twist of lemon peel", "bitter"));
+
+  //ingredients into pantry object<--sweet ingredients--> 
+  pantry.addIngredient(new Ingredient ("sugar cube", "sweet"));
+  pantry.addIngredient(new Ingredient ("spoonful of honey", "sweet"));
+  pantry.addIngredient(new Ingredient ("splash of cola", "sweet"));
+
+  //ingredients into pantry object<--fruity ingredients--> 
+  pantry.addIngredient(new Ingredient ("slice of orange", "fruity"));
+  pantry.addIngredient(new Ingredient ("dash of cassis", "fruity"));
+  pantry.addIngredient(new Ingredient ("cherry on top", "fruity")); 
+
+  //adj and nouns for drink names to be randomly selected
+  var drinkAdjectives = ["Port", "Blimey", "Thunder", "Dead man", "Shark bait", "Sea legs", "Yellow jack"];
+  var drinkNouns = ["landlubber", "grog", "crow's nest", "cog", "booty", "sea dog", "scurvy dog", "fathom"]; 
+
+  //<--helper function-->
+
+  //set global count for display function
+  //set global guest for future functions 
+  var count = 0;
+  var guest; 
+
+  //function to generate random number to pull from ingredients array 
+  function generateRandomNumber (max) {
+    //math.floor ensure integer is rounded down 
+    return Math.floor(Math.random() * max);  
+  };
+
+  //<---listener events--->
+
+  //ask customer name to save in object array once drink is built
+  $("#custName").submit(function (e) {
+    e.preventDefault(); 
+    var customerName = $("#name").val();
+    Esme.greetCustomer(customerName);
+    guest = new Customer(customerName);
+    //reset input field 
+    $("#custName")[0].reset();
+    $("#intro").hide();
+    $("#orderOptions").show();
+  });
+
+  //once user answers question, their choices are put into preferences array 
   $(document).on("click", "#nextQuest", function () {
     if ($("#userpref").val() === "yes") {
-      guest.preferences.push(Bob.questions[count].type);
+      guest.preferences.push(Esme.questions[count].type);
     }
-    //if (guest.preferences === []) {
-     // $("#results").text("Here is your glass of water, landsman.")
-    //}//TODO: work in progress--wrong spot for water-->
     count++;
-    console.log(guest.preferences);
-    displayQuestion(); 
+    Esme.displayQuestion(); 
   });
 
-  //grab preferences and randomly get ingredient from pantry from each type of preference
-  //display results for user of their drink 
+  //grab preferences and randomly get ingredient from pantry in each type of preference
   $("#orderOptions").submit(function (e) {
     e.preventDefault(); 
-    console.log("Preferences = ", guest.preferences)
     for (var i = 0; i < guest.preferences.length; i++) {
-      pantry.getIngredient(guest.preferences[i]);
-      userOrderIngred.push(pantry.getIngredient(guest.preferences[i]));
-      console.log(userOrderIngred);
+      guest.ingredients.push(pantry.getIngredient(guest.preferences[i]));
     }
-    var name = generateDrinkName();
-    displayResults(name, userOrderIngred);
+    //display results for user of their drink 
+    var drinkName = Esme.generateDrinkName();
+    Esme.addCustomer(guest);
+    Esme.displayResults(drinkName, guest.ingredients);
     $("#orderOptions").hide();
-    $("#startOver").show(); 
-    //hide submit, show new drink button   
+    $("#startOver").show();   
   });
 
-  var guest = new Customer("Sam", "", []);
-  $("#startOver").hide();
-  $("#intro").hide(); 
-  console.log(Bob.name);
-  Bob.whoIs();
-  Bob.greetCustomer();
-  displayQuestion();
+  //user choice to start over 
+  $(document).on("click", "#startOver", function () {
+    $("#preferences").empty();
+    $("#results").empty();
+    $("#orderOptions").empty();
+    $("#startOver").hide(); 
+    $("#intro").show(); 
+  });
 
-  //TODO: 
-  //fix title
-  //need to push drink name to object 
-  //elminate userOrder
-  //handle all no edge case, and # of ingredients, think about different conditions such as liquor with 1 ingredient
-  //greet customer and remember customer
+  //on page load hide redo button and form
+  $("#startOver").hide();
+  $("#orderOptions").hide(); 
+  //show bartender name
+  Esme.whoIs();
 });  

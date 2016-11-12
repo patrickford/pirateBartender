@@ -16,3 +16,30 @@ select {
 #results {
     margin-top: 15px; 
 }
+body {
+    background-image: url("piratebar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 75px; 
+}
+
+#pirateBar {
+    background-color: rgba(12, 4, 4, 0.2);
+}
+
+h1, h2, h3, h4, h5, label {
+    color: white;
+    text-shadow: 2px 2px 2px black; 
+    text-align: center;
+}
+#intro {
+    text-align: center;
+}
+
+label {
+    font-size: 16px; 
+}
+
+#startOver {
+    margin-top: 15px;  
+}

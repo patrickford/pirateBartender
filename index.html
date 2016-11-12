@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <!--script, cdn and file links-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="npm-bootstrap//node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="main.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="npm-jquery/node_modules/jquery/dist/jquery.js"></script>
+    <script src="npm-bootstrap/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="bartender.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--title for web page-->
@@ -14,24 +14,26 @@
   <body>
     <header>
       <!--header user will see most-->
-      <h1>Pick your poison, matey!</h1>
+      <h1>Welcome to Smuggler's Cove</h1>
     </header>
     <main id="Questions">
-      <div class="container">
+      <div class="container" id="pirateBar">
         <div class="row">
           <form id="orderOptions">
+            <div id="sayHi"></div>
             <div id="preferences" class="form-group"></div><!--form-group-->
           </form><!--orderOptions form-->
         </div><!--row-->
         <div class="row" id="intro">
           <form id="custName">
             <label for="customer">Ahoy matey, what is your name?</label>
-            <input
+            <input type="text" id="name" required>
+            <button class="btn btn-success" type="submit" id="nameSubmit">I'd like to order a drink</button>
           </form><!--form customer information-->
         </div><!--intro-->
         <div class="row" id="results"></div>
         <div id="newOrder">
-          <button id="startOver" type="submit">Start Over</button>
+          <button class="btn btn-success center-block" id="startOver" type="button">Start Over</button>
         </div>
       </div><!--container-->
     </main>
