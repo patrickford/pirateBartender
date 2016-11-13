@@ -63,6 +63,7 @@ $(document).ready(function() {
       var greeting = "<h2>" + customerName + " welcome back matey!</h2><h3>Here is your " + this.customers[customerName].drink + ".</h3><br><h5>" + 
         this.customers[customerName].ingredients.join(", ") + "</h5>";
       $("#results").append(greeting);
+      $("#startOver").show(); 
     }
     else {
       var sayHi = "<h2>Great to meet ye " + customerName + ".</h2><h4>Answer me this.</h4>"
@@ -215,9 +216,11 @@ $(document).ready(function() {
   $(document).on("click", "#startOver", function () {
     $("#preferences").empty();
     $("#results").empty();
-    $("#orderOptions").empty();
-    $("#startOver").hide(); 
-    $("#intro").show(); 
+    $("#orderOptions").hide();
+    $("#startOver").hide();
+    $("#orderSubmit").remove(); 
+    $("#intro").show();
+    count = 0;  
   });
 
   //on page load hide redo button and form
@@ -225,4 +228,4 @@ $(document).ready(function() {
   $("#orderOptions").hide(); 
   //show bartender name
   Esme.whoIs();
-});  
+});
