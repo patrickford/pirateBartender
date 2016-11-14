@@ -6,3 +6,8 @@ Main goals :
 2. understand inheritence 
 3. have others review this code 
 4. allow time to review others code 
+
+## How to install 
+1. Fork the pirate bartender repository to your own GitHub account. 
+2. Clone the repository to your local machine. 
+3. Install Node Package Managers Jquery and Bootstrap. 
